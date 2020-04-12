@@ -14,6 +14,29 @@ shelly:
 
 jewish_calendar:
 
+input_boolean:
+  shabbat_timers:
+    name: Timers for Shabbat & Holiday
+    icon: mdi:candle
+    
+input_datetime:
+  shabbat_morning_public:
+    has_time: true
+    name: Morning time - public space
+    icon: mdi:mdi-lightbulb-on-outline
+  shabbat_morning_master:
+    has_time: true
+    name: Morning time - master bedroom
+    icon: mdi:mdi-lightbulb-on-outline
+  shabbat_nap_master:
+    has_time: true
+    name: Nap time - master bedroom
+    icon: mdi:mdi-lightbulb-off
+  shabbat_afternoon_master:
+    has_time: true
+    name: Afternoon time - master bedroom
+    icon: mdi:mdi-lightbulb-on-outline
+
 sensor:
   - platform: time_date
     display_options:

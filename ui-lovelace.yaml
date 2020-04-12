@@ -19,3 +19,19 @@ views:
         type: weather-forecast
     path: default_view
     title: Home
+  - badges: []
+    cards:
+      - entities:
+          - entity: input_boolean.shabbat_timers
+        title: Global Switch
+        type: entities
+      - type: entities
+        entities:
+          - entity: input_datetime.shabbat_morning_public
+          - entity: input_datetime.shabbat_morning_master
+          - entity: input_datetime.shabbat_nap_master
+          - entity: input_datetime.shabbat_afternoon_master
+        title: Set Time
+        show_header_toggle: false
+    path: shabbat
+    title: Shabbat
