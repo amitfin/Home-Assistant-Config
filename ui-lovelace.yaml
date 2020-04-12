@@ -1,0 +1,21 @@
+title: Finkelstein
+views:
+  - badges: null
+    cards:
+      - entity: sensor.time_date
+        type: sensor
+      - entities:
+          - scene.shutdown_all
+        show_header_toggle: false
+        type: entities
+      - entities:
+          - entity: media_player.entrance_speaker
+          - entity: switch.shelly_shsw_pm_766cbe
+          - entity: cover.shelly_shsw_25_b92fd1
+          - entity: switch.shelly_shsw_pm_766477
+        show_header_toggle: false
+        type: entities
+      - entity: weather.home
+        type: weather-forecast
+    path: default_view
+    title: Home
