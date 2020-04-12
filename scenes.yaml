@@ -1,0 +1,12 @@
+- id: '1581793015157'
+  name: Leaving Home
+  entities:
+    switch.shelly_shsw_pm_766477:
+      state: off
+    switch.shelly_shsw_pm_766cbe:
+      state: off
+    cover.shelly_shsw_25_b92fd1:
+      state: closed
+    media_player.entrance_speaker:
+      state: idle
+
