@@ -45,6 +45,10 @@
         - switch.shelly_shsw_pm_766477 # master bedroom light
     - service: cover.open_cover
       entity_id: cover.shelly_shsw_25_b92fd1
+    - service: media_player.media_stop
+      entity_id: 
+        - media_player.nestmini7196
+        - media_player.amit_s_echo_dot
       
 - id: shabbat-night
   alias: Shabbat Or Holiday Night

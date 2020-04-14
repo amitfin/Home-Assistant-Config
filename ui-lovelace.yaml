@@ -1,37 +1,52 @@
 title: Finkelstein
 views:
-  - badges: null
+  - title: Home
+    path: default_view
     cards:
-      - entity: sensor.time_date
-        type: sensor
-      - entities:
+      - title: Scenes
+        type: entities
+        entities:
           - scene.shutdown_all
         show_header_toggle: false
+      - title: Lights
         type: entities
-      - entities:
-          - entity: media_player.entrance_speaker
+        entities:
           - entity: switch.shelly_shsw_pm_766cbe
-          - entity: cover.shelly_shsw_25_b92fd1
           - entity: switch.shelly_shsw_pm_766477
-        show_header_toggle: false
+      - title: Windows
         type: entities
-      - entity: weather.home
-        type: weather-forecast
-    path: default_view
-    title: Home
-  - badges: []
+        entities:
+          - entity: cover.shelly_shsw_25_b92fd1
+      - title: Speakers
+        type: entities
+        entities:
+          - entity: media_player.nestmini7196
+          - entity: media_player.amit_s_echo_dot
+  - title: Info
+    path: info
+    cards:
+      - type: glance
+        entities:
+          - entity: sensor.date_time
+        show_icon: false
+        show_state: true
+        show_name: false
+      - type: weather-forecast
+        entity: weather.home
+      - type: shopping-list
+        title: Shopping List
+  - title: Shabbat
+    path: shabbat
     cards:
       - entities:
           - entity: input_boolean.shabbat_timers
         title: Global Switch
         type: entities
-      - type: entities
-        entities:
+      - entities:
           - entity: input_datetime.shabbat_morning_public
           - entity: input_datetime.shabbat_morning_master
           - entity: input_datetime.shabbat_nap_master
           - entity: input_datetime.shabbat_afternoon_master
-        title: Set Time
         show_header_toggle: false
-    path: shabbat
-    title: Shabbat
+        title: Set Time
+        type: entities

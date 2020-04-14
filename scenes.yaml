@@ -7,6 +7,7 @@
       state: off
     cover.shelly_shsw_25_b92fd1:
       state: closed
-    media_player.entrance_speaker:
+    media_player.nestmini7196:
       state: idle
-
+    media_player.amit_s_echo_dot:
+      state: idle
