@@ -1,5 +1,4 @@
 - id: evening-lights
-  alias: Turn Lights On Every Evening
   trigger:
     platform: sun
     event: sunset
@@ -9,7 +8,6 @@
     entity_id: switch.shelly_shsw_pm_766cbe # entrance light
     
 - id: evening-windows
-  alias: Close Windows Every Evening
   trigger:
     platform: sun
     event: sunset
@@ -19,7 +17,6 @@
     entity_id: cover.shelly_shsw_25_b92fd1
 
 - id: midnight-lights
-  alias: Close Lights At Midnight
   trigger:
     platform: time
     at: '00:00:00'
@@ -28,7 +25,6 @@
     entity_id: switch.shelly_shsw_pm_766cbe
 
 - id: shabbat-starts
-  alias: Shabbat Or Holiday Starts
   trigger:
     platform: state
     entity_id: binary_sensor.jewish_calendar_issur_melacha_in_effect
@@ -45,39 +41,31 @@
         - switch.shelly_shsw_pm_766477 # master bedroom light
     - service: cover.open_cover
       entity_id: cover.shelly_shsw_25_b92fd1
-    - service: media_player.media_stop
+    - service: media_player.turn_off
       entity_id: 
         - media_player.nestmini7196
         - media_player.amit_s_echo_dot
       
 - id: shabbat-night
-  alias: Shabbat Or Holiday Night
   trigger:
     platform: time
     at: '23:00:00'
   condition:
     - condition: state
-      entity_id: binary_sensor.jewish_calendar_issur_melacha_in_effect
-      state: 'on'  
-    - condition: state
-      entity_id: input_boolean.shabbat_timers
-      state: 'on'  
+      entity_id: sensor.shabbat_timers_in_effect
+      state: 'on'
   action:
     - service: switch.turn_off
       entity_id: switch.shelly_shsw_pm_766477
 
 - id: shabbat-morning
-  alias: Shabbat Or Holiday Morning
   trigger:
     platform: template
-    value_template: "{{ states('sensor.time') == (state_attr('input_datetime.shabbat_morning_public', 'timestamp') | int | timestamp_custom('%H:%M', True)) }}"
+    value_template: "{{ states('sensor.time') == (state_attr('input_datetime.shabbat_morning_public', 'timestamp') | int | timestamp_custom('%H:%M', False)) }}"
   condition:
     - condition: state
-      entity_id: binary_sensor.jewish_calendar_issur_melacha_in_effect
-      state: 'on'  
-    - condition: state
-      entity_id: input_boolean.shabbat_timers
-      state: 'on'  
+      entity_id: sensor.shabbat_timers_in_effect
+      state: 'on' 
   action:
     - service: switch.turn_on
       entity_id: switch.shelly_shsw_pm_766cbe
@@ -85,49 +73,37 @@
       entity_id: cover.shelly_shsw_25_b92fd1      
     
 - id: shabbat-morning-master-bedroom
-  alias: Shabbat Or Holiday Morning Lights in Master Bedroom
   trigger:
     platform: template
-    value_template: "{{ states('sensor.time') == (state_attr('input_datetime.shabbat_morning_master', 'timestamp') | int | timestamp_custom('%H:%M', True)) }}"
+    value_template: "{{ states('sensor.time') == (state_attr('input_datetime.shabbat_morning_master', 'timestamp') | int | timestamp_custom('%H:%M', False)) }}"
   condition:
     - condition: state
-      entity_id: binary_sensor.jewish_calendar_issur_melacha_in_effect
-      state: 'on'  
-    - condition: state
-      entity_id: input_boolean.shabbat_timers
-      state: 'on'  
+      entity_id: sensor.shabbat_timers_in_effect
+      state: 'on'
   action:
     - service: switch.turn_on
       entity_id: switch.shelly_shsw_pm_766477
       
 - id: shabbat-nap-master-bedroom
-  alias: Shabbat Or Holiday Nap Lights in Master Bedroom
   trigger:
     platform: template
-    value_template: "{{ states('sensor.time') == (state_attr('input_datetime.shabbat_nap_master', 'timestamp') | int | timestamp_custom('%H:%M', True)) }}"
+    value_template: "{{ states('sensor.time') == (state_attr('input_datetime.shabbat_nap_master', 'timestamp') | int | timestamp_custom('%H:%M', False)) }}"
   condition:
     - condition: state
-      entity_id: binary_sensor.jewish_calendar_issur_melacha_in_effect
-      state: 'on'  
-    - condition: state
-      entity_id: input_boolean.shabbat_timers
-      state: 'on'  
+      entity_id: sensor.shabbat_timers_in_effect
+      state: 'on'
   action:
     - service: switch.turn_off
       entity_id: switch.shelly_shsw_pm_766477
       
 - id: shabbat-afternoon-master-bedroom
-  alias: Shabbat Or Holiday Afternoon Lights in Master Bedroom
   trigger:
     platform: template
-    value_template: "{{ states('sensor.time') == (state_attr('input_datetime.shabbat_afternoon_master', 'timestamp') | int | timestamp_custom('%H:%M', True)) }}"
+    value_template: "{{ states('sensor.time') == (state_attr('input_datetime.shabbat_afternoon_master', 'timestamp') | int | timestamp_custom('%H:%M', False)) }}"
   condition:
     - condition: state
-      entity_id: binary_sensor.jewish_calendar_issur_melacha_in_effect
-      state: 'on'  
-    - condition: state
-      entity_id: input_boolean.shabbat_timers
-      state: 'on'  
+      entity_id: sensor.shabbat_timers_in_effect
+      state: 'on'
   action:
     - service: switch.turn_on
       entity_id: switch.shelly_shsw_pm_766477

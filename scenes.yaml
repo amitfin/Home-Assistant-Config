@@ -8,6 +8,6 @@
     cover.shelly_shsw_25_b92fd1:
       state: closed
     media_player.nestmini7196:
-      state: idle
+      state: off
     media_player.amit_s_echo_dot:
-      state: idle
+      state: off

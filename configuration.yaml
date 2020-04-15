@@ -44,6 +44,19 @@ sensor:
       - 'time'
       - 'date_time'
       - 'time_date'
+  - platform: template
+    sensors:
+      shabbat_timers_in_effect:
+        entity_id:
+          - binary_sensor.jewish_calendar_issur_melacha_in_effect
+          - input_boolean.shabbat_timers
+        value_template: >-
+          {% if is_state('binary_sensor.jewish_calendar_issur_melacha_in_effect', 'on') and
+                is_state('input_boolean.shabbat_timers', 'on') %}
+            on
+          {% else %}
+            off
+          {% endif %}
 
 tts:
   - platform: google_translate
