@@ -20,6 +20,10 @@ input_boolean:
     icon: mdi:candle
     
 input_datetime:
+  shabbat_night_master_bedroom:
+    has_time: true
+    name: Night time - master bedroom
+    icon: mdi:mdi-lightbulb-off
   shabbat_morning_public:
     has_time: true
     name: Morning time - public space

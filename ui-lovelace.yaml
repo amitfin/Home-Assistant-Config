@@ -1,52 +1,60 @@
 title: Finkelstein
 views:
-  - title: Home
-    path: default_view
-    cards:
-      - title: Scenes
-        type: entities
-        entities:
+  - cards:
+      - entities:
           - scene.shutdown_all
         show_header_toggle: false
-      - title: Lights
+        title: Scenes
         type: entities
-        entities:
+      - entities:
           - entity: switch.shelly_shsw_pm_766cbe
           - entity: switch.shelly_shsw_pm_766477
-      - title: Windows
+        title: Lights
         type: entities
-        entities:
+      - entities:
           - entity: cover.shelly_shsw_25_b92fd1
-      - title: Speakers
+        title: Windows
         type: entities
-        entities:
-          - entity: media_player.nestmini7196
+      - entities:
+          - entity: media_player.nestmini9591
           - entity: media_player.amit_s_echo_dot
-  - title: Info
-    path: info
-    cards:
-      - type: glance
-        entities:
+        title: Speakers
+        type: entities
+    path: default_view
+    title: Home
+  - cards:
+      - entities:
           - entity: sensor.date_time
         show_icon: false
-        show_state: true
         show_name: false
-      - type: weather-forecast
-        entity: weather.home
-      - type: shopping-list
-        title: Shopping List
-  - title: Shabbat
-    path: shabbat
-    cards:
+        show_state: true
+        type: glance
+      - entity: weather.home
+        type: weather-forecast
+    path: info
+    title: Info
+  - cards:
       - entities:
           - entity: input_boolean.shabbat_timers
         title: Global Switch
         type: entities
       - entities:
           - entity: input_datetime.shabbat_morning_public
-          - entity: input_datetime.shabbat_morning_master
-          - entity: input_datetime.shabbat_nap_master
-          - entity: input_datetime.shabbat_afternoon_master
+            name: Morning lights on
         show_header_toggle: false
-        title: Set Time
+        title: Main Floor
         type: entities
+      - entities:
+          - entity: input_datetime.shabbat_night_master_bedroom
+            name: Night lights off
+          - entity: input_datetime.shabbat_morning_master
+            name: Morning lights on
+          - entity: input_datetime.shabbat_nap_master
+            name: Nap lights off
+          - entity: input_datetime.shabbat_afternoon_master
+            name: Afternoon lights on
+        show_header_toggle: false
+        title: Master Bedroom
+        type: entities
+    path: shabbat
+    title: Shabbat
