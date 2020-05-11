@@ -14,7 +14,9 @@
     offset: '00:45:00'
   action:
     service: cover.close_cover
-    entity_id: cover.shelly_shsw_25_b92fd1
+    entity_id: 
+      - cover.shelly_shsw_25_b92fd1
+      - cover.shelly_shsw_25_68c63af981be
 
 - id: midnight
   trigger:
@@ -24,7 +26,9 @@
     - service: switch.turn_off
       entity_id: switch.shelly_shsw_pm_766cbe
     - service: cover.close_cover
-      entity_id: cover.shelly_shsw_25_b92fd1
+      entity_id: 
+        - cover.shelly_shsw_25_b92fd1
+        - cover.shelly_shsw_25_68c63af981be
 
 - id: shabbat-starts
   trigger:
@@ -42,7 +46,9 @@
         - switch.shelly_shsw_pm_766cbe
         - switch.shelly_shsw_pm_766477 # master bedroom light
     - service: cover.open_cover
-      entity_id: cover.shelly_shsw_25_b92fd1
+      entity_id: 
+        - cover.shelly_shsw_25_b92fd1
+        - cover.shelly_shsw_25_68c63af981be
     - service: media_player.turn_off
       entity_id: 
         - media_player.nestmini9591
@@ -72,7 +78,9 @@
     - service: switch.turn_on
       entity_id: switch.shelly_shsw_pm_766cbe
     - service: cover.open_cover
-      entity_id: cover.shelly_shsw_25_b92fd1      
+      entity_id: 
+        - cover.shelly_shsw_25_b92fd1
+        - cover.shelly_shsw_25_68c63af981be
     
 - id: shabbat-morning-master-bedroom
   trigger:

@@ -2,7 +2,7 @@ title: Finkelstein
 views:
   - cards:
       - entities:
-          - scene.shutdown_all
+          - entity: script.shutdown_all
         show_header_toggle: false
         title: Scenes
         type: entities
@@ -13,6 +13,7 @@ views:
         type: entities
       - entities:
           - entity: cover.shelly_shsw_25_b92fd1
+          - entity: cover.shelly_shsw_25_68c63af981be
         title: Windows
         type: entities
       - entities:
@@ -40,7 +41,7 @@ views:
         type: entities
       - entities:
           - entity: input_datetime.shabbat_morning_public
-            name: Morning lights on
+            name: Morning lights on and open windows
         show_header_toggle: false
         title: Main Floor
         type: entities
