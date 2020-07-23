@@ -8,6 +8,8 @@ views:
         type: entities
       - entities:
           - entity: switch.shelly_shsw_pm_766cbe
+          - entity: switch.shelly_shsw_25_68c63af91b61_1
+          - entity: switch.shelly_shsw_25_68c63af91b61_2
           - entity: switch.shelly_shsw_pm_766477
         title: Lights
         type: entities
@@ -17,45 +19,50 @@ views:
         title: Windows
         type: entities
       - entities:
-          - entity: media_player.nestmini9591
-          - entity: media_player.amit_s_echo_dot
+          - entity: media_player.nestmini4522
         title: Speakers
         type: entities
     path: default_view
     title: Home
   - cards:
       - entities:
-          - entity: sensor.date_time
-        show_icon: false
-        show_name: false
-        show_state: true
-        type: glance
-      - entity: weather.home
-        type: weather-forecast
-    path: info
-    title: Info
-  - cards:
-      - entities:
           - entity: input_boolean.shabbat_timers
+            icon: 'mdi:candle'
+            name: Timers for Shabbat & Holiday
         title: Global Switch
         type: entities
       - entities:
           - entity: input_datetime.shabbat_morning_public
+            icon: 'mdi:lightbulb-on-outline'
             name: Morning lights on and open windows
         show_header_toggle: false
         title: Main Floor
         type: entities
       - entities:
           - entity: input_datetime.shabbat_night_master_bedroom
+            icon: 'mdi:lightbulb-off'
             name: Night lights off
           - entity: input_datetime.shabbat_morning_master
+            icon: 'mdi:lightbulb-on-outline'
             name: Morning lights on
           - entity: input_datetime.shabbat_nap_master
+            icon: 'mdi:lightbulb-off'
             name: Nap lights off
           - entity: input_datetime.shabbat_afternoon_master
+            icon: 'mdi:lightbulb-on-outline'
             name: Afternoon lights on
         show_header_toggle: false
         title: Master Bedroom
         type: entities
     path: shabbat
     title: Shabbat
+  - badges: []
+    cards:
+      - entity: weather.home
+        type: weather-forecast
+      - entities:
+          - sensor.shelly_shht_1_9555ae_temperature
+          - sensor.shelly_shht_1_9555ae_humidity
+        type: entities
+    path: info
+    title: Weather

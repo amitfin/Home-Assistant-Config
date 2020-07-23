@@ -1,0 +1,5 @@
+shabbat_timers_in_effect:
+  entities:
+    - binary_sensor.jewish_calendar_issur_melacha_in_effect
+    - input_boolean.shabbat_timers
+  all: true

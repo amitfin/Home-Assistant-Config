@@ -1,7 +1,6 @@
 default_config:
 
 http:
-  base_url: amitf.duckdns.org:8123
   ssl_certificate: /ssl/fullchain.pem
   ssl_key: /ssl/privkey.pem
 
@@ -11,56 +10,24 @@ script: !include scripts.yaml
 scene: !include scenes.yaml
 
 shelly:
+  host_ip: 10.100.102.240
 
 jewish_calendar:
 
 input_boolean:
   shabbat_timers:
-    name: Timers for Shabbat & Holiday
-    icon: mdi:candle
     
 input_datetime:
   shabbat_night_master_bedroom:
     has_time: true
-    name: Night time - master bedroom
-    icon: mdi:mdi-lightbulb-off
   shabbat_morning_public:
     has_time: true
-    name: Morning time - public space
-    icon: mdi:mdi-lightbulb-on-outline
   shabbat_morning_master:
     has_time: true
-    name: Morning time - master bedroom
-    icon: mdi:mdi-lightbulb-on-outline
   shabbat_nap_master:
     has_time: true
-    name: Nap time - master bedroom
-    icon: mdi:mdi-lightbulb-off
   shabbat_afternoon_master:
     has_time: true
-    name: Afternoon time - master bedroom
-    icon: mdi:mdi-lightbulb-on-outline
-
-sensor:
-  - platform: time_date
-    display_options:
-      - 'date'
-      - 'time'
-      - 'date_time'
-      - 'time_date'
-  - platform: template
-    sensors:
-      shabbat_timers_in_effect:
-        entity_id:
-          - binary_sensor.jewish_calendar_issur_melacha_in_effect
-          - input_boolean.shabbat_timers
-        value_template: >-
-          {% if is_state('binary_sensor.jewish_calendar_issur_melacha_in_effect', 'on') and
-                is_state('input_boolean.shabbat_timers', 'on') %}
-            on
-          {% else %}
-            off
-          {% endif %}
 
 tts:
   - platform: google_translate
