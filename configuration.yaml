@@ -29,5 +29,21 @@ input_datetime:
   shabbat_afternoon_master:
     has_time: true
 
+sensor:
+  - platform: rest
+    name: shelly_9555ae_tmp
+    resource: !secret shelly_9555ae_rest
+    value_template: '{{ value_json.data.device_status.tmp.value }}'
+    device_class: temperature
+    unit_of_measurement: '°C'
+    scan_interval: 600
+  - platform: rest
+    name: shelly_9555ae_hum
+    resource: !secret shelly_9555ae_rest
+    value_template: '{{ value_json.data.device_status.hum.value }}'
+    device_class: humidity
+    unit_of_measurement: '%'
+    scan_interval: 600
+
 tts:
   - platform: google_translate
