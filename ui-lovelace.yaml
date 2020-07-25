@@ -61,8 +61,10 @@ views:
       - entity: weather.home
         type: weather-forecast
       - entities:
-          - sensor.shelly_shht_1_9555ae_temperature
-          - sensor.shelly_shht_1_9555ae_humidity
+          - entity: sensor.shelly_9555ae_tmp
+            name: Living Room Temperature
+          - entity: sensor.shelly_9555ae_hum
+            name: Living Room Humidity
         type: entities
-    path: info
+    path: weather
     title: Weather

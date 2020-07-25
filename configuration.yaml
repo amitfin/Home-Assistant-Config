@@ -30,6 +30,10 @@ input_datetime:
     has_time: true
 
 sensor:
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
   - platform: rest
     name: shelly_9555ae_tmp
     resource: !secret shelly_9555ae_rest

@@ -36,13 +36,9 @@
 - id: shabbat-starts
   trigger:
     platform: state
-    entity_id: binary_sensor.jewish_calendar_issur_melacha_in_effect
+    entity_id: group.shabbat_timers_in_effect
     from: 'off'
     to: 'on'
-  condition:
-    - condition: state
-      entity_id: input_boolean.shabbat_timers
-      state: 'on'  
   action:
     - service: switch.turn_on
       entity_id: 
