@@ -5,6 +5,7 @@
 !*.yaml
 !.gitignore
 !*.md
+!www/timer-24h-card.js
 
 # Ignore folders.
 .storage

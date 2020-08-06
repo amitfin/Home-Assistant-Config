@@ -16,18 +16,14 @@ jewish_calendar:
 
 input_boolean:
   shabbat_timers:
-    
-input_datetime:
-  shabbat_night_master_bedroom:
-    has_time: true
-  shabbat_morning_public:
-    has_time: true
-  shabbat_morning_master:
-    has_time: true
-  shabbat_nap_master:
-    has_time: true
-  shabbat_afternoon_master:
-    has_time: true
+
+input_number:
+  shabbat_master_bedroom_lights:
+    min: 0
+    max: 16777215
+  shabbat_main_floor:
+    min: 0
+    max: 16777215
 
 sensor:
   - platform: time_date

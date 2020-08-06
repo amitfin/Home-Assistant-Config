@@ -24,7 +24,8 @@ views:
         type: entities
     path: default_view
     title: Home
-  - cards:
+  - badges: []
+    cards:
       - entities:
           - entity: input_boolean.shabbat_timers
             icon: 'mdi:candle'
@@ -32,29 +33,16 @@ views:
         title: Global Switch
         type: entities
       - entities:
-          - entity: input_datetime.shabbat_morning_public
-            icon: 'mdi:lightbulb-on-outline'
-            name: Morning lights on and open windows
-        show_header_toggle: false
+          - entity: input_number.shabbat_main_floor
+            name: Lights & Windows
         title: Main Floor
-        type: entities
+        type: 'custom:timer-24h-card'
       - entities:
-          - entity: input_datetime.shabbat_night_master_bedroom
-            icon: 'mdi:lightbulb-off'
-            name: Night lights off
-          - entity: input_datetime.shabbat_morning_master
-            icon: 'mdi:lightbulb-on-outline'
-            name: Morning lights on
-          - entity: input_datetime.shabbat_nap_master
-            icon: 'mdi:lightbulb-off'
-            name: Nap lights off
-          - entity: input_datetime.shabbat_afternoon_master
-            icon: 'mdi:lightbulb-on-outline'
-            name: Afternoon lights on
-        show_header_toggle: false
+          - entity: input_number.shabbat_master_bedroom_lights
+            name: Lights
         title: Master Bedroom
-        type: entities
-    path: shabbat
+        type: 'custom:timer-24h-card'
+    path: Shabbat
     title: Shabbat
   - badges: []
     cards:
@@ -66,5 +54,13 @@ views:
           - entity: sensor.shelly_9555ae_hum
             name: Living Room Humidity
         type: entities
+      - entity: sensor.shelly_9555ae_tmp
+        graph: line
+        name: Living Room Temperture
+        type: sensor
+      - entity: sensor.shelly_9555ae_hum
+        graph: line
+        name: Living Room Humidity
+        type: sensor
     path: weather
     title: Weather
