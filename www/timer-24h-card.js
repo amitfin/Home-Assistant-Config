@@ -4,35 +4,19 @@ class Timer24hCard extends HTMLElement {
       return;
     }
 
-    if (!this.content) {
+    if (!this.card) {
       this.card = document.createElement('ha-card');
-      this.content = document.createElement('div');
-      this.content.style.padding = '0px 16px 8px';
-      this.card.appendChild(this.content);
       this.appendChild(this.card);
+    } else {
+      this.card.innerHTML = '';
     }
     
-    this.card.header = this.config.title;
-    this.content.innerHTML = '';
-    
-    for (const entity of this.config.entities) {
-      const content = document.createElement('div');
-      content.classList.add('card-content');
-      content.style.padding = '0px 0px 8px';
-      const state = hass.states[entity.entity];
-      if (state) {
-        content.innerText = 
-          entity.name || state.attributes.friendly_name || state.entity_id;
-        content.appendChild(_createTimer(state, hass));
-      } else {
-        content.innerText = 'Entity ' + entity.entity + ' not found.';
-      }
-      this.content.appendChild(content);
-    }
+    this.card.appendChild(this._header(hass));
+    this.card.appendChild(this._content(hass));
   }
 
   setConfig(config) {
-    for (const property of ['title', 'entities']) {
+    for (const property of ['title', 'toggle', 'entities']) {
       if (!config[property]) {
         throw new Error('You need to define ' + property);
       }
@@ -47,6 +31,48 @@ class Timer24hCard extends HTMLElement {
 
   getCardSize() {
     return this.config.entities.length + 1;
+  }
+  
+  _header(hass) {
+    const header = document.createElement("div");
+    header.classList.add('card-header')
+    header.style.display = 'flex';
+    header.style.justifyContent = 'space-between';
+    const title = document.createElement('div');
+    title.classList.add('name')
+    title.innerText = this.config.title;
+    header.appendChild(title);
+    const toggle = document.createElement('ha-switch');
+    toggle.style.padding = '13px 5px';
+    toggle.style.margin = '-4px -0px';
+    toggle.checked = hass.states[this.config.toggle].state == 'on';
+    toggle.addEventListener("change", () => {
+      hass.callService('input_boolean', 'toggle', {
+        'entity_id': this.config.toggle,
+      });
+    });    
+    header.appendChild(toggle);
+    return header;
+  }
+  
+  _content(hass) {
+    const content = document.createElement('div');
+    content.style.padding = '0px 16px 8px';
+    for (const entity of this.config.entities) {
+      const row = document.createElement('div');
+      row.classList.add('card-content');
+      row.style.padding = '0px 0px 8px';
+      const state = hass.states[entity.entity];
+      if (state) {
+        row.innerText = 
+          entity.name || state.attributes.friendly_name || state.entity_id;
+        row.appendChild(_createTimer(state, hass));
+      } else {
+        row.innerText = 'Entity ' + entity.entity + ' not found.';
+      }
+      content.appendChild(row);
+    }
+    return content;
   }
 }
 

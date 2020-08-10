@@ -3,3 +3,15 @@ shabbat_timers_in_effect:
     - binary_sensor.jewish_calendar_issur_melacha_in_effect
     - input_boolean.shabbat_timers
   all: true
+  
+shabbat_timers_in_effect_main_floor:
+  entities:
+    - group.shabbat_timers_in_effect
+    - input_boolean.shabbat_timers_main_floor
+  all: true
+  
+shabbat_timers_in_effect_master_bedroom:
+  entities:
+    - group.shabbat_timers_in_effect
+    - input_boolean.shabbat_timers_master_bedroom
+  all: true
