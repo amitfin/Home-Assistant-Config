@@ -15,3 +15,21 @@ shabbat_timers_in_effect_master_bedroom:
     - group.shabbat_timers_in_effect
     - input_boolean.shabbat_timers_master_bedroom
   all: true
+  
+shabbat_timers_in_effect_reut:
+  entities:
+    - group.shabbat_timers_in_effect
+    - input_boolean.shabbat_timers_reut
+  all: true
+  
+shabbat_timers_in_effect_shaked:
+  entities:
+    - group.shabbat_timers_in_effect
+    - input_boolean.shabbat_timers_shaked
+  all: true
+  
+shabbat_timers_in_effect_roei:
+  entities:
+    - group.shabbat_timers_in_effect
+    - input_boolean.shabbat_timers_roei
+  all: true

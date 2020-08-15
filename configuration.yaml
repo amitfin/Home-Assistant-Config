@@ -5,7 +5,7 @@ http:
   ssl_key: /ssl/privkey.pem
 
 group: !include groups.yaml
-automation: !include automations.yaml
+automation: !include_dir_merge_list automations
 script: !include scripts.yaml
 scene: !include scenes.yaml
 
@@ -18,15 +18,29 @@ input_boolean:
   shabbat_timers:
   shabbat_timers_main_floor:
   shabbat_timers_master_bedroom:
-  
+  shabbat_timers_reut:
+  shabbat_timers_shaked:
+  shabbat_timers_roei:
 
 input_number:
   shabbat_master_bedroom_lights:
     min: 0
     max: 16777215
+  shabbat_master_bedroom_ac:
+    min: 0
+    max: 16777215    
   shabbat_main_floor:
     min: 0
     max: 16777215
+  shabbat_reut_ac:
+    min: 0
+    max: 16777215    
+  shabbat_shaked_ac:
+    min: 0
+    max: 16777215    
+  shabbat_roei_ac:
+    min: 0
+    max: 16777215    
 
 sensor:
   - platform: time_date
