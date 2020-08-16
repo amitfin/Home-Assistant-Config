@@ -83,11 +83,12 @@ class Timer24hCard extends HTMLElement {
   }
 }
 
-const ON = 'seagreen';
-const OFF = 'tomato';
-const DISABLED = 'gray';
+const ON = 'forestgreen';
+var OFF;
 
 function _createTimer(entity, hass, enabled) {
+  OFF = getComputedStyle(document.documentElement).
+    getPropertyValue('--card-background-color');  
   const timer = document.createElement('div');
   for (var i = 0; i < 24; i++) {
     const button = document.createElement("BUTTON");
@@ -95,18 +96,28 @@ function _createTimer(entity, hass, enabled) {
     button.timer = timer;
     button.entity = entity;
     button.type = 'button';
-    button.disabled = !enabled;
-    button.style.color = 'white';
-    button.style.border = 'none';
+    button.style.padding = '0px';
+    button.style.border = '1px solid silver'; 
     button.style.margin = '0px';
-    button.style.padding = '0px 1px';
+    if (i > 0) {
+      button.style.marginLeft = '-1px';
+    }
     button.innerText = ((i < 10) ? '0' : '') + i.toString();
     if (enabled) {
       // JS converts numbers to 32 bits signed integers for bitwise operations
-      button.style.backgroundColor = (entity.state & Math.pow(2, i)) ? ON : OFF;
+      if (entity.state & Math.pow(2, i)) {
+        button.style.backgroundColor = ON;
+        button.style.color = 'white';
+      } else {
+        button.style.backgroundColor = OFF;
+        button.style.color = getComputedStyle(document.documentElement).
+          getPropertyValue('--primary-text-color');
+      }
       button.onclick = _onclick;
     } else {
-      button.style.backgroundColor = DISABLED;
+      button.disabled = true;
+      button.style.backgroundColor = 'gray';
+      button.style.color = 'white';
     }
     timer.appendChild(button);
   }
