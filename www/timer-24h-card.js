@@ -21,10 +21,10 @@ class Timer24hCard extends HTMLElement {
         throw new Error('You need to define ' + property);
       }
     }
-    for (const entity of config.entities) {
-      if (!entity) {
+    for (const timer of config.entities) {
+      if (!timer.entity) {
         throw new Error('You need to define entity');
-      }      
+      }
     }
     this.config = config;
   }
@@ -45,18 +45,24 @@ class Timer24hCard extends HTMLElement {
     const toggle = document.createElement('ha-switch');
     toggle.style.padding = '13px 5px';
     toggle.style.margin = '-4px -0px';
-    toggle.checked = hass.states[this.config.toggle].state == 'on';
-    toggle.addEventListener("change", () => {
-      hass.callService('input_boolean', 'toggle', {
-        'entity_id': this.config.toggle,
-      });
-    });    
+    if (hass.states[this.config.toggle]) {
+      toggle.checked = hass.states[this.config.toggle].state == 'on';
+      toggle.addEventListener('change', () => {
+        hass.callService('input_boolean', 'toggle', {
+          'entity_id': this.config.toggle,
+        });
+      }); 
+    } else {
+      toggle.disabled = true;
+    }
+   
     header.appendChild(toggle);
     return header;
   }
   
   _content(hass) {
-    const enabled = hass.states[this.config.toggle].state == 'on';
+    const enabled = hass.states[this.config.toggle] && 
+      hass.states[this.config.toggle].state == 'on';
     const content = document.createElement('div');
     content.style.padding = '0px 16px 8px';
     for (const entity of this.config.entities) {
@@ -69,7 +75,7 @@ class Timer24hCard extends HTMLElement {
           entity.name || state.attributes.friendly_name || state.entity_id;
         row.appendChild(_createTimer(state, hass, enabled));
       } else {
-        row.innerText = 'Entity ' + entity.entity + ' not found.';
+        row.innerText = 'Entity not found: ' + entity.entity;
       }
       content.appendChild(row);
     }
