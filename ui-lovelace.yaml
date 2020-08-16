@@ -19,6 +19,18 @@ views:
         title: Windows
         type: entities
       - entities:
+          - entity: switch.shelly_shsw_1_e098069513b6
+            name: Master
+          - entity: switch.shelly_shsw_1_68c63afa10ab
+            name: Reut
+          - entity: switch.shelly_shsw_1_68c63afa64e2
+            name: Shaked
+          - entity: switch.shelly_shsw_1_e098069585b6
+            name: Roei
+        show_header_toggle: false
+        title: A/C
+        type: entities
+      - entities:
           - entity: media_player.nestmini4522
         title: Speakers
         type: entities
@@ -41,8 +53,28 @@ views:
       - entities:
           - entity: input_number.shabbat_master_bedroom_lights
             name: Lights
+          - entity: input_number.shabbat_master_bedroom_ac
+            name: A/C
         title: Master Bedroom
         toggle: input_boolean.shabbat_timers_master_bedroom
+        type: 'custom:timer-24h-card'
+      - entities:
+          - entity: input_number.shabbat_reut_ac
+            name: A/C
+        title: Reut Bedroom
+        toggle: input_boolean.shabbat_timers_reut
+        type: 'custom:timer-24h-card'
+      - entities:
+          - entity: input_number.shabbat_shaked_ac
+            name: A/C
+        title: Shaked Bedroom
+        toggle: input_boolean.shabbat_timers_shaked
+        type: 'custom:timer-24h-card'
+      - entities:
+          - entity: input_number.shabbat_roei_ac
+            name: A/C
+        title: Roei Bedroom
+        toggle: input_boolean.shabbat_timers_roei
         type: 'custom:timer-24h-card'
     path: Shabbat
     title: Shabbat

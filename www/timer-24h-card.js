@@ -56,6 +56,7 @@ class Timer24hCard extends HTMLElement {
   }
   
   _content(hass) {
+    const enabled = hass.states[this.config.toggle].state == 'on';
     const content = document.createElement('div');
     content.style.padding = '0px 16px 8px';
     for (const entity of this.config.entities) {
@@ -66,7 +67,7 @@ class Timer24hCard extends HTMLElement {
       if (state) {
         row.innerText = 
           entity.name || state.attributes.friendly_name || state.entity_id;
-        row.appendChild(_createTimer(state, hass));
+        row.appendChild(_createTimer(state, hass, enabled));
       } else {
         row.innerText = 'Entity ' + entity.entity + ' not found.';
       }
@@ -78,8 +79,9 @@ class Timer24hCard extends HTMLElement {
 
 const ON = 'seagreen';
 const OFF = 'tomato';
+const DISABLED = 'gray';
 
-function _createTimer(entity, hass) {
+function _createTimer(entity, hass, enabled) {
   const timer = document.createElement('div');
   for (var i = 0; i < 24; i++) {
     const button = document.createElement("BUTTON");
@@ -87,15 +89,19 @@ function _createTimer(entity, hass) {
     button.timer = timer;
     button.entity = entity;
     button.type = 'button';
+    button.disabled = !enabled;
     button.style.color = 'white';
     button.style.border = 'none';
     button.style.margin = '0px';
     button.style.padding = '0px 1px';
-    // JS converts numbers to 32 bits signed integers for bitwise operations
-    button.style.backgroundColor = 
-      (entity.state & Math.pow(2, i)) ? ON : OFF;
     button.innerText = ((i < 10) ? '0' : '') + i.toString();
-    button.onclick = _onclick;
+    if (enabled) {
+      // JS converts numbers to 32 bits signed integers for bitwise operations
+      button.style.backgroundColor = (entity.state & Math.pow(2, i)) ? ON : OFF;
+      button.onclick = _onclick;
+    } else {
+      button.style.backgroundColor = DISABLED;
+    }
     timer.appendChild(button);
   }
   return timer;
