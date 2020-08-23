@@ -32,6 +32,9 @@ input_number:
   shabbat_main_floor:
     min: 0
     max: 16777215
+  shabbat_hot_plate:
+    min: 0
+    max: 16777215
   shabbat_reut_ac:
     min: 0
     max: 16777215    
@@ -43,10 +46,6 @@ input_number:
     max: 16777215    
 
 sensor:
-  - platform: time_date
-    display_options:
-      - 'time'
-      - 'date'
   - platform: rest
     name: shelly_9555ae_tmp
     resource: !secret shelly_9555ae_rest

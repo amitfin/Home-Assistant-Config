@@ -1,6 +1,6 @@
 - name: shabbat_main_floor_lights
   switch: group.shabbat_timers_in_effect_main_floor
-  timer: input_number.shabbat_main_floor
+  timer: shabbat_main_floor
   domain: switch
   entities:
     - shelly_shsw_pm_766cbe
@@ -13,6 +13,13 @@
   entities:
     - shelly_shsw_25_b92fd1
     - shelly_shsw_25_68c63af981be
+
+- name: shabbat_hot_plate
+  switch: group.shabbat_timers_in_effect_main_floor
+  timer: shabbat_hot_plate
+  domain: switch
+  entities:
+    - shelly_shsw_1_e09806958318
 
 - name: shabbat_master_bedroom_lights
   switch: group.shabbat_timers_in_effect_master_bedroom

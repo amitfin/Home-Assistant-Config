@@ -33,21 +33,19 @@ def create(config, on):
   line('- id: %s' % name)
   line('  alias: %s'% name)
   line('  trigger:')
-  line('    platform: template')
-  line(('    value_template: "{{ states(\'input_number.%s\') | int | '
-    'bitwise_and(2 ** (states(\'sensor.time\').split(\':\')[0] | int)) %s 0}}"')
-    % (config['timer'], '>' if on else '=='))
+  line('    - platform: time_pattern')
+  line('      minutes: 0')
+  line('    - platform: state')
+  line('      entity_id: %s' % config['switch'])
+  line('      to: \'on\'')
   line('  condition:')
   line('    - condition: state')
   line('      entity_id: %s' % config['switch'])
   line('      state: \'on\'')
-  line('    - condition: or')
-  line('      conditions:')
-  for entity in config['entities']:
-    line('        - condition: state')
-    line('          entity_id: %s.%s' % (config['domain'], entity))
-    line('          state: \'%s\'' % (
-      domain_config['off'] if on else domain_config['on']))
+  line('    - condition: template')
+  line(('      value_template: "{{ states(\'input_number.%s\') | int | '
+    'bitwise_and(2 ** now().hour) %s 0}}"')
+    % (config['timer'], '>' if on else '=='))
   line('  action:')
   line('    - service: %s.%s' % (config['domain'],
     domain_config['on_action'] if on else domain_config['off_action']))

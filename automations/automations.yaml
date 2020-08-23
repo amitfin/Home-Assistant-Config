@@ -46,15 +46,26 @@
   action:
     - service: switch.turn_on
       entity_id: 
-        - switch.shelly_shsw_pm_766cbe
-        - switch.shelly_shsw_pm_766477 # master bedroom light
-        - switch.shelly_shsw_25_68c63af91b61_1
         - switch.shelly_shsw_25_68c63af91b61_2
-    - service: cover.open_cover
-      entity_id: 
-        - cover.shelly_shsw_25_b92fd1
-        - cover.shelly_shsw_25_68c63af981be
     - service: media_player.turn_off
       entity_id: 
         - media_player.nestmini9591
         - media_player.amit_s_echo_dot
+        
+- id: shabbat-ends
+  alias: setup house when Shabbat ends
+  trigger:
+    platform: state
+    entity_id: group.shabbat_timers_in_effect
+    from: 'on'
+    to: 'off'
+  action:
+    - service: switch.turn_on
+      entity_id: 
+        - switch.shelly_shsw_1_e09806958318 # hot plate
+        - switch.shelly_shsw_1_e098069513b6 # master AC
+        - switch.shelly_shsw_1_68c63afa10ab # Reut AC
+        - switch.shelly_shsw_1_68c63afa64e2 # Shaked AC
+        - switch.shelly_shsw_1_e098069585b6 # Roei AC
+        
+

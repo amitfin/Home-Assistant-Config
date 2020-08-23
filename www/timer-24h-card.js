@@ -83,12 +83,17 @@ class Timer24hCard extends HTMLElement {
   }
 }
 
-const ON = 'forestgreen';
-var OFF;
+const ON_BACKGROUND = 'forestgreen';
+const ON_TEXT = 'white';
+var OFF_BACKGROUND;
+var OFF_TEXT;
 
 function _createTimer(entity, hass, enabled) {
-  OFF = getComputedStyle(document.documentElement).
-    getPropertyValue('--card-background-color');  
+  OFF_BACKGROUND = getComputedStyle(document.documentElement).
+    getPropertyValue('--card-background-color');
+  OFF_TEXT = getComputedStyle(document.documentElement).
+    getPropertyValue('--primary-text-color');
+
   const timer = document.createElement('div');
   for (var i = 0; i < 24; i++) {
     const button = document.createElement("BUTTON");
@@ -106,12 +111,11 @@ function _createTimer(entity, hass, enabled) {
     if (enabled) {
       // JS converts numbers to 32 bits signed integers for bitwise operations
       if (entity.state & Math.pow(2, i)) {
-        button.style.backgroundColor = ON;
-        button.style.color = 'white';
+        button.style.color = ON_TEXT;
+        button.style.backgroundColor = ON_BACKGROUND;
       } else {
-        button.style.backgroundColor = OFF;
-        button.style.color = getComputedStyle(document.documentElement).
-          getPropertyValue('--primary-text-color');
+        button.style.color = OFF_TEXT;
+        button.style.backgroundColor = OFF_BACKGROUND;
       }
       button.onclick = _onclick;
     } else {
@@ -124,12 +128,17 @@ function _createTimer(entity, hass, enabled) {
   return timer;
 }
 
-function _onclick() { 
-  this.style.backgroundColor = 
-    (this.style.backgroundColor == ON) ? OFF : ON;
+function _onclick() {
+  if (this.style.backgroundColor == ON_BACKGROUND) {
+    this.style.color = OFF_TEXT;
+    this.style.backgroundColor = OFF_BACKGROUND;
+  } else {
+    this.style.color = ON_TEXT;
+    this.style.backgroundColor = ON_BACKGROUND;
+  }
   var value = 0;
   for (const button of this.timer.children) {
-    if (button.style.backgroundColor == ON) {
+    if (button.style.backgroundColor == ON_BACKGROUND) {
       value += Math.pow(2, Number(button.innerText));
     }
   }
