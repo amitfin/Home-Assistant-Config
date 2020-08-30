@@ -25,25 +25,25 @@ input_boolean:
 input_number:
   shabbat_master_bedroom_lights:
     min: 0
-    max: 16777215
+    max: 281474976710655
   shabbat_master_bedroom_ac:
     min: 0
-    max: 16777215    
+    max: 281474976710655
   shabbat_main_floor:
     min: 0
-    max: 16777215
+    max: 281474976710655
   shabbat_hot_plate:
     min: 0
-    max: 16777215
+    max: 281474976710655
   shabbat_reut_ac:
     min: 0
-    max: 16777215    
+    max: 281474976710655
   shabbat_shaked_ac:
     min: 0
-    max: 16777215    
+    max: 281474976710655
   shabbat_roei_ac:
     min: 0
-    max: 16777215    
+    max: 281474976710655
 
 sensor:
   - platform: rest

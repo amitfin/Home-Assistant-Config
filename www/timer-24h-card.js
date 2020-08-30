@@ -1,8 +1,23 @@
+// JS converts numbers to 32 bits signed integers for bitwise operations
+const HALF_DAY_BITS = 24;
+const AM_MASK = Math.pow(2, HALF_DAY_BITS) - 1;
+const PM_SHIFT = Math.pow(2, HALF_DAY_BITS);
+const ON_BACKGROUND = 'forestgreen';
+const ON_TEXT = 'white';
+var OFF_BACKGROUND;
+var OFF_TEXT;
+const DIALOG_ROW = 8;
+
 class Timer24hCard extends HTMLElement {
   set hass(hass) {
     if (!this.config) {
       return;
     }
+    
+    OFF_BACKGROUND = getComputedStyle(document.documentElement).
+      getPropertyValue('--card-background-color');
+    OFF_TEXT = getComputedStyle(document.documentElement).
+      getPropertyValue('--primary-text-color');
 
     if (!this.card) {
       this.card = document.createElement('ha-card');
@@ -34,11 +49,11 @@ class Timer24hCard extends HTMLElement {
   }
   
   _header(hass) {
-    const header = document.createElement("div");
+    const header = document.createElement('DIV');
     header.classList.add('card-header')
     header.style.display = 'flex';
     header.style.justifyContent = 'space-between';
-    const title = document.createElement('div');
+    const title = document.createElement('DIV');
     title.classList.add('name')
     title.innerText = this.config.title;
     header.appendChild(title);
@@ -63,17 +78,19 @@ class Timer24hCard extends HTMLElement {
   _content(hass) {
     const enabled = hass.states[this.config.toggle] && 
       hass.states[this.config.toggle].state == 'on';
-    const content = document.createElement('div');
+    const content = document.createElement('DIV');
     content.style.padding = '0px 16px 8px';
     for (const entity of this.config.entities) {
-      const row = document.createElement('div');
+      const row = document.createElement('DIV');
       row.classList.add('card-content');
       row.style.padding = '0px 0px 8px';
       const state = hass.states[entity.entity];
       if (state) {
-        row.innerText = 
+        const name = 
           entity.name || state.attributes.friendly_name || state.entity_id;
-        row.appendChild(_createTimer(state, hass, enabled));
+        row.innerText = name;
+        row.appendChild(_createTimer(
+          state, this.config.title + ': ' + name, hass, enabled));
       } else {
         row.innerText = 'Entity not found: ' + entity.entity;
       }
@@ -83,52 +100,118 @@ class Timer24hCard extends HTMLElement {
   }
 }
 
-const ON_BACKGROUND = 'forestgreen';
-const ON_TEXT = 'white';
-var OFF_BACKGROUND;
-var OFF_TEXT;
+function _createTimer(entity, name, hass, enabled) {
+  const timer = _createTimerButtons(entity, enabled);
+  const dialog = _createDialog(entity, name, hass);
+  timer.appendChild(dialog);
+  timer.dialog = dialog;
+  return timer;
+}
 
-function _createTimer(entity, hass, enabled) {
-  OFF_BACKGROUND = getComputedStyle(document.documentElement).
-    getPropertyValue('--card-background-color');
-  OFF_TEXT = getComputedStyle(document.documentElement).
-    getPropertyValue('--primary-text-color');
-
-  const timer = document.createElement('div');
-  for (var i = 0; i < 24; i++) {
-    const button = document.createElement("BUTTON");
-    button.hass = hass;
-    button.timer = timer;
-    button.entity = entity;
+function _createTimerButtons(entity, enabled) {
+  const am = entity.state & AM_MASK;
+  const pm = entity.state / PM_SHIFT;  
+  const timer = document.createElement('DIV');
+  const onclick = function() { timer.dialog.show(); };
+  for (var i = 0; i < (HALF_DAY_BITS * 2); i++) {
+    const button = document.createElement('BUTTON');
     button.type = 'button';
+    button.style.width = '8px';
+    button.style.height = '20px';
     button.style.padding = '0px';
-    button.style.border = '1px solid silver'; 
+    button.style.border = '1px solid silver';
     button.style.margin = '0px';
     if (i > 0) {
       button.style.marginLeft = '-1px';
     }
-    button.innerText = ((i < 10) ? '0' : '') + i.toString();
     if (enabled) {
-      // JS converts numbers to 32 bits signed integers for bitwise operations
-      if (entity.state & Math.pow(2, i)) {
-        button.style.color = ON_TEXT;
+      if ((i < HALF_DAY_BITS ? am : pm) & Math.pow(2, (i % HALF_DAY_BITS))) {
         button.style.backgroundColor = ON_BACKGROUND;
       } else {
-        button.style.color = OFF_TEXT;
         button.style.backgroundColor = OFF_BACKGROUND;
       }
-      button.onclick = _onclick;
+      button.onclick = onclick;
+      button.style.cursor = 'pointer';
     } else {
       button.disabled = true;
       button.style.backgroundColor = 'gray';
-      button.style.color = 'white';
     }
     timer.appendChild(button);
   }
+  timer.appendChild(_createTimerHours(timer, enabled));
   return timer;
 }
 
-function _onclick() {
+function _createTimerHours(timer, enabled) {
+  const onclick = function() { timer.dialog.show(); };
+  const table = document.createElement('TABLE');
+  table.style.marginTop = '-8px';
+  table.style.borderSpacing = '0px';
+  const tr = document.createElement('TR');
+  table.appendChild(tr);
+  for (var i = 0; i < 24; i++) {
+    const td = document.createElement('TD');
+    td.style.fontSize = 'x-small';
+    td.style.textAlign = 'center';
+    td.style.width = '14px';
+    td.style.padding = '0px';
+    if (enabled) {
+      td.onclick = onclick;
+      td.style.cursor = 'pointer';    
+    }
+    td.innerText = ((i < 10) ? '0' : '' ) + i.toString();
+    tr.appendChild(td);
+  }
+  return table;
+}
+
+function _createDialog(entity, name, hass) {
+  const am = entity.state & AM_MASK;
+  const pm = entity.state / PM_SHIFT;
+  const dialog = document.createElement('ha-dialog');
+  dialog.heading = name;
+  dialog.open = false;
+  dialog.addEventListener('closing', () => { 
+    _onClosingDialog(dialog, entity.entity_id, hass);
+  });
+  for (var i = 0; i < (HALF_DAY_BITS * 2); i++) {
+    const button = document.createElement('BUTTON');
+    button.type = 'button';
+    button.style.textAlign = 'center';
+    button.style.width = '40px';
+    button.style.height = '40px';
+    button.style.padding = '0px';
+    button.style.border = '1px solid silver'; 
+    button.style.margin = '0px';
+    button.style.cursor = 'pointer';
+    if (i % DIALOG_ROW !== 0) {
+      button.style.marginLeft = '-1px';
+    }
+    if (i >= DIALOG_ROW) {
+      button.style.marginTop = '-1px';
+    }
+    const hour = Math.floor(i / 2);
+    button.innerText = 
+      ((hour < 10) ? '0' : '') + hour.toString() +
+      ((i % 2 === 0) ? ':00' : ':30');
+    if ((i < HALF_DAY_BITS ? am : pm) & Math.pow(2, (i % HALF_DAY_BITS))) {
+      button.style.color = ON_TEXT;
+      button.style.backgroundColor = ON_BACKGROUND;
+    } else {
+      button.style.color = OFF_TEXT;
+      button.style.backgroundColor = OFF_BACKGROUND;
+    }
+    button.onclick = _onClickDialog;
+    dialog.appendChild(button);
+    if ((i + 1) % DIALOG_ROW === 0) {
+      dialog.appendChild(document.createElement('BR'));
+    }
+  }
+
+  return dialog; 
+}
+
+function _onClickDialog() {
   if (this.style.backgroundColor == ON_BACKGROUND) {
     this.style.color = OFF_TEXT;
     this.style.backgroundColor = OFF_BACKGROUND;
@@ -136,14 +219,22 @@ function _onclick() {
     this.style.color = ON_TEXT;
     this.style.backgroundColor = ON_BACKGROUND;
   }
+}
+
+function _onClosingDialog(dialog, entity_id, hass) {
   var value = 0;
-  for (const button of this.timer.children) {
-    if (button.style.backgroundColor == ON_BACKGROUND) {
-      value += Math.pow(2, Number(button.innerText));
+  var index = 0;
+  for (const element of dialog.children) {
+    if (element.nodeName !== 'BUTTON') {
+      continue;
     }
+    if (element.style.backgroundColor == ON_BACKGROUND) {
+      value += Math.pow(2, index);
+    }
+    index++;
   }
-  this.hass.callService('input_number', 'set_value', {
-    'entity_id': this.entity.entity_id,
+  hass.callService('input_number', 'set_value', {
+    'entity_id': entity_id,
     'value': value
   });
 }

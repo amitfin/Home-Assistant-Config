@@ -4,7 +4,7 @@
   alias: shabbat_main_floor_lights_on
   trigger:
     - platform: time_pattern
-      minutes: 0
+      minutes: /30
     - platform: state
       entity_id: group.shabbat_timers_in_effect_main_floor
       to: 'on'
@@ -13,7 +13,7 @@
       entity_id: group.shabbat_timers_in_effect_main_floor
       state: 'on'
     - condition: template
-      value_template: "{{ states('input_number.shabbat_main_floor') | int | bitwise_and(2 ** now().hour) > 0}}"
+      value_template: "{{ states('input_number.shabbat_main_floor') | int | bitwise_and(2 ** ((now().hour * 2) + (now().minute // 30))) > 0}}"
   action:
     - service: switch.turn_on
       entity_id:
@@ -23,7 +23,7 @@
   alias: shabbat_main_floor_lights_off
   trigger:
     - platform: time_pattern
-      minutes: 0
+      minutes: /30
     - platform: state
       entity_id: group.shabbat_timers_in_effect_main_floor
       to: 'on'
@@ -32,7 +32,7 @@
       entity_id: group.shabbat_timers_in_effect_main_floor
       state: 'on'
     - condition: template
-      value_template: "{{ states('input_number.shabbat_main_floor') | int | bitwise_and(2 ** now().hour) == 0}}"
+      value_template: "{{ states('input_number.shabbat_main_floor') | int | bitwise_and(2 ** ((now().hour * 2) + (now().minute // 30))) == 0}}"
   action:
     - service: switch.turn_off
       entity_id:
@@ -43,7 +43,7 @@
   alias: shabbat_main_floor_windows_on
   trigger:
     - platform: time_pattern
-      minutes: 0
+      minutes: /30
     - platform: state
       entity_id: group.shabbat_timers_in_effect_main_floor
       to: 'on'
@@ -52,7 +52,7 @@
       entity_id: group.shabbat_timers_in_effect_main_floor
       state: 'on'
     - condition: template
-      value_template: "{{ states('input_number.shabbat_main_floor') | int | bitwise_and(2 ** now().hour) > 0}}"
+      value_template: "{{ states('input_number.shabbat_main_floor') | int | bitwise_and(2 ** ((now().hour * 2) + (now().minute // 30))) > 0}}"
   action:
     - service: cover.open_cover
       entity_id:
@@ -62,7 +62,7 @@
   alias: shabbat_main_floor_windows_off
   trigger:
     - platform: time_pattern
-      minutes: 0
+      minutes: /30
     - platform: state
       entity_id: group.shabbat_timers_in_effect_main_floor
       to: 'on'
@@ -71,7 +71,7 @@
       entity_id: group.shabbat_timers_in_effect_main_floor
       state: 'on'
     - condition: template
-      value_template: "{{ states('input_number.shabbat_main_floor') | int | bitwise_and(2 ** now().hour) == 0}}"
+      value_template: "{{ states('input_number.shabbat_main_floor') | int | bitwise_and(2 ** ((now().hour * 2) + (now().minute // 30))) == 0}}"
   action:
     - service: cover.close_cover
       entity_id:
@@ -82,7 +82,7 @@
   alias: shabbat_hot_plate_on
   trigger:
     - platform: time_pattern
-      minutes: 0
+      minutes: /30
     - platform: state
       entity_id: group.shabbat_timers_in_effect_main_floor
       to: 'on'
@@ -91,7 +91,7 @@
       entity_id: group.shabbat_timers_in_effect_main_floor
       state: 'on'
     - condition: template
-      value_template: "{{ states('input_number.shabbat_hot_plate') | int | bitwise_and(2 ** now().hour) > 0}}"
+      value_template: "{{ states('input_number.shabbat_hot_plate') | int | bitwise_and(2 ** ((now().hour * 2) + (now().minute // 30))) > 0}}"
   action:
     - service: switch.turn_on
       entity_id:
@@ -100,7 +100,7 @@
   alias: shabbat_hot_plate_off
   trigger:
     - platform: time_pattern
-      minutes: 0
+      minutes: /30
     - platform: state
       entity_id: group.shabbat_timers_in_effect_main_floor
       to: 'on'
@@ -109,7 +109,7 @@
       entity_id: group.shabbat_timers_in_effect_main_floor
       state: 'on'
     - condition: template
-      value_template: "{{ states('input_number.shabbat_hot_plate') | int | bitwise_and(2 ** now().hour) == 0}}"
+      value_template: "{{ states('input_number.shabbat_hot_plate') | int | bitwise_and(2 ** ((now().hour * 2) + (now().minute // 30))) == 0}}"
   action:
     - service: switch.turn_off
       entity_id:
@@ -119,7 +119,7 @@
   alias: shabbat_master_bedroom_lights_on
   trigger:
     - platform: time_pattern
-      minutes: 0
+      minutes: /30
     - platform: state
       entity_id: group.shabbat_timers_in_effect_master_bedroom
       to: 'on'
@@ -128,7 +128,7 @@
       entity_id: group.shabbat_timers_in_effect_master_bedroom
       state: 'on'
     - condition: template
-      value_template: "{{ states('input_number.shabbat_master_bedroom_lights') | int | bitwise_and(2 ** now().hour) > 0}}"
+      value_template: "{{ states('input_number.shabbat_master_bedroom_lights') | int | bitwise_and(2 ** ((now().hour * 2) + (now().minute // 30))) > 0}}"
   action:
     - service: switch.turn_on
       entity_id:
@@ -137,7 +137,7 @@
   alias: shabbat_master_bedroom_lights_off
   trigger:
     - platform: time_pattern
-      minutes: 0
+      minutes: /30
     - platform: state
       entity_id: group.shabbat_timers_in_effect_master_bedroom
       to: 'on'
@@ -146,7 +146,7 @@
       entity_id: group.shabbat_timers_in_effect_master_bedroom
       state: 'on'
     - condition: template
-      value_template: "{{ states('input_number.shabbat_master_bedroom_lights') | int | bitwise_and(2 ** now().hour) == 0}}"
+      value_template: "{{ states('input_number.shabbat_master_bedroom_lights') | int | bitwise_and(2 ** ((now().hour * 2) + (now().minute // 30))) == 0}}"
   action:
     - service: switch.turn_off
       entity_id:
@@ -156,7 +156,7 @@
   alias: shabbat_master_bedroom_ac_on
   trigger:
     - platform: time_pattern
-      minutes: 0
+      minutes: /30
     - platform: state
       entity_id: group.shabbat_timers_in_effect_master_bedroom
       to: 'on'
@@ -165,7 +165,7 @@
       entity_id: group.shabbat_timers_in_effect_master_bedroom
       state: 'on'
     - condition: template
-      value_template: "{{ states('input_number.shabbat_master_bedroom_ac') | int | bitwise_and(2 ** now().hour) > 0}}"
+      value_template: "{{ states('input_number.shabbat_master_bedroom_ac') | int | bitwise_and(2 ** ((now().hour * 2) + (now().minute // 30))) > 0}}"
   action:
     - service: switch.turn_on
       entity_id:
@@ -174,7 +174,7 @@
   alias: shabbat_master_bedroom_ac_off
   trigger:
     - platform: time_pattern
-      minutes: 0
+      minutes: /30
     - platform: state
       entity_id: group.shabbat_timers_in_effect_master_bedroom
       to: 'on'
@@ -183,7 +183,7 @@
       entity_id: group.shabbat_timers_in_effect_master_bedroom
       state: 'on'
     - condition: template
-      value_template: "{{ states('input_number.shabbat_master_bedroom_ac') | int | bitwise_and(2 ** now().hour) == 0}}"
+      value_template: "{{ states('input_number.shabbat_master_bedroom_ac') | int | bitwise_and(2 ** ((now().hour * 2) + (now().minute // 30))) == 0}}"
   action:
     - service: switch.turn_off
       entity_id:
@@ -193,7 +193,7 @@
   alias: shabbat_reut_ac_on
   trigger:
     - platform: time_pattern
-      minutes: 0
+      minutes: /30
     - platform: state
       entity_id: group.shabbat_timers_in_effect_reut
       to: 'on'
@@ -202,7 +202,7 @@
       entity_id: group.shabbat_timers_in_effect_reut
       state: 'on'
     - condition: template
-      value_template: "{{ states('input_number.shabbat_reut_ac') | int | bitwise_and(2 ** now().hour) > 0}}"
+      value_template: "{{ states('input_number.shabbat_reut_ac') | int | bitwise_and(2 ** ((now().hour * 2) + (now().minute // 30))) > 0}}"
   action:
     - service: switch.turn_on
       entity_id:
@@ -211,7 +211,7 @@
   alias: shabbat_reut_ac_off
   trigger:
     - platform: time_pattern
-      minutes: 0
+      minutes: /30
     - platform: state
       entity_id: group.shabbat_timers_in_effect_reut
       to: 'on'
@@ -220,7 +220,7 @@
       entity_id: group.shabbat_timers_in_effect_reut
       state: 'on'
     - condition: template
-      value_template: "{{ states('input_number.shabbat_reut_ac') | int | bitwise_and(2 ** now().hour) == 0}}"
+      value_template: "{{ states('input_number.shabbat_reut_ac') | int | bitwise_and(2 ** ((now().hour * 2) + (now().minute // 30))) == 0}}"
   action:
     - service: switch.turn_off
       entity_id:
@@ -230,7 +230,7 @@
   alias: shabbat_shaked_ac_on
   trigger:
     - platform: time_pattern
-      minutes: 0
+      minutes: /30
     - platform: state
       entity_id: group.shabbat_timers_in_effect_shaked
       to: 'on'
@@ -239,7 +239,7 @@
       entity_id: group.shabbat_timers_in_effect_shaked
       state: 'on'
     - condition: template
-      value_template: "{{ states('input_number.shabbat_shaked_ac') | int | bitwise_and(2 ** now().hour) > 0}}"
+      value_template: "{{ states('input_number.shabbat_shaked_ac') | int | bitwise_and(2 ** ((now().hour * 2) + (now().minute // 30))) > 0}}"
   action:
     - service: switch.turn_on
       entity_id:
@@ -248,7 +248,7 @@
   alias: shabbat_shaked_ac_off
   trigger:
     - platform: time_pattern
-      minutes: 0
+      minutes: /30
     - platform: state
       entity_id: group.shabbat_timers_in_effect_shaked
       to: 'on'
@@ -257,7 +257,7 @@
       entity_id: group.shabbat_timers_in_effect_shaked
       state: 'on'
     - condition: template
-      value_template: "{{ states('input_number.shabbat_shaked_ac') | int | bitwise_and(2 ** now().hour) == 0}}"
+      value_template: "{{ states('input_number.shabbat_shaked_ac') | int | bitwise_and(2 ** ((now().hour * 2) + (now().minute // 30))) == 0}}"
   action:
     - service: switch.turn_off
       entity_id:
@@ -267,7 +267,7 @@
   alias: shabbat_roei_ac_on
   trigger:
     - platform: time_pattern
-      minutes: 0
+      minutes: /30
     - platform: state
       entity_id: group.shabbat_timers_in_effect_roei
       to: 'on'
@@ -276,7 +276,7 @@
       entity_id: group.shabbat_timers_in_effect_roei
       state: 'on'
     - condition: template
-      value_template: "{{ states('input_number.shabbat_roei_ac') | int | bitwise_and(2 ** now().hour) > 0}}"
+      value_template: "{{ states('input_number.shabbat_roei_ac') | int | bitwise_and(2 ** ((now().hour * 2) + (now().minute // 30))) > 0}}"
   action:
     - service: switch.turn_on
       entity_id:
@@ -285,7 +285,7 @@
   alias: shabbat_roei_ac_off
   trigger:
     - platform: time_pattern
-      minutes: 0
+      minutes: /30
     - platform: state
       entity_id: group.shabbat_timers_in_effect_roei
       to: 'on'
@@ -294,7 +294,7 @@
       entity_id: group.shabbat_timers_in_effect_roei
       state: 'on'
     - condition: template
-      value_template: "{{ states('input_number.shabbat_roei_ac') | int | bitwise_and(2 ** now().hour) == 0}}"
+      value_template: "{{ states('input_number.shabbat_roei_ac') | int | bitwise_and(2 ** ((now().hour * 2) + (now().minute // 30))) == 0}}"
   action:
     - service: switch.turn_off
       entity_id:

@@ -34,7 +34,7 @@ def create(config, on):
   line('  alias: %s'% name)
   line('  trigger:')
   line('    - platform: time_pattern')
-  line('      minutes: 0')
+  line('      minutes: /30')
   line('    - platform: state')
   line('      entity_id: %s' % config['switch'])
   line('      to: \'on\'')
@@ -44,7 +44,7 @@ def create(config, on):
   line('      state: \'on\'')
   line('    - condition: template')
   line(('      value_template: "{{ states(\'input_number.%s\') | int | '
-    'bitwise_and(2 ** now().hour) %s 0}}"')
+    'bitwise_and(2 ** ((now().hour * 2) + (now().minute // 30))) %s 0}}"')
     % (config['timer'], '>' if on else '=='))
   line('  action:')
   line('    - service: %s.%s' % (config['domain'],

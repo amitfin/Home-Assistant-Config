@@ -47,6 +47,9 @@
     - service: switch.turn_on
       entity_id: 
         - switch.shelly_shsw_25_68c63af91b61_2
+    - service: switch.turn_off
+      entity_id: 
+        - switch.shelly_shsw_1_e0980695175b
     - service: media_player.turn_off
       entity_id: 
         - media_player.nestmini9591
@@ -67,5 +70,6 @@
         - switch.shelly_shsw_1_68c63afa10ab # Reut AC
         - switch.shelly_shsw_1_68c63afa64e2 # Shaked AC
         - switch.shelly_shsw_1_e098069585b6 # Roei AC
+        - switch.shelly_shsw_1_e0980695175b # Smart toliet
         
 
