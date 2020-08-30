@@ -47,6 +47,8 @@ views:
       - entities:
           - entity: input_number.shabbat_main_floor
             name: Lights & Windows
+          - entity: input_number.shabbat_hot_plate
+            name: Hot Plate
         title: Main Floor
         toggle: input_boolean.shabbat_timers_main_floor
         type: 'custom:timer-24h-card'
@@ -82,12 +84,6 @@ views:
     cards:
       - entity: weather.home
         type: weather-forecast
-      - entities:
-          - entity: sensor.shelly_9555ae_tmp
-            name: Living Room Temperature
-          - entity: sensor.shelly_9555ae_hum
-            name: Living Room Humidity
-        type: entities
       - entity: sensor.shelly_9555ae_tmp
         graph: line
         name: Living Room Temperture
