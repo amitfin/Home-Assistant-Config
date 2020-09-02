@@ -182,7 +182,6 @@ function _createDialog(entity, name, hass) {
     _onClosingDialog(dialog, entity.entity_id, hass);
   });
   const content = document.createElement('SPAN');
-  content.class = 'content';
   dialog.content = content;
   dialog.appendChild(content);
   for (var i = 0; i < (HALF_DAY_BITS * 2); i++) {
@@ -219,7 +218,6 @@ function _createDialog(entity, name, hass) {
 function _dialogHeader(name, dialog) {
   const header = document.createElement('DIV');
   header.style.color = OFF_TEXT;
-  header.style.borderBottom = '1px solid gray';
   header.style.display = 'flex';
   const button = document.createElement('mwc-icon-button');
   button.style.marginLeft = '-18px'
@@ -229,9 +227,7 @@ function _dialogHeader(name, dialog) {
   icon.path = mdiClose;
   button.appendChild(icon);
   const title = document.createElement('DIV');
-  title.class = 'main-title';
   title.style.margin = '10px 0px 0px 15px';
-  title.style.display = 'inline';
   title.innerText = name;
   header.appendChild(title);
   return header;
