@@ -1,3 +1,5 @@
+const mdiClose = 'M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z';
+
 // JS converts numbers to 32 bits signed integers for bitwise operations
 const HALF_DAY_BITS = 24;
 const AM_MASK = Math.pow(2, HALF_DAY_BITS) - 1;
@@ -61,7 +63,7 @@ class Timer24hCard extends HTMLElement {
     toggle.style.padding = '13px 5px';
     toggle.style.margin = '-4px -0px';
     if (hass.states[this.config.toggle]) {
-      toggle.checked = hass.states[this.config.toggle].state == 'on';
+      toggle.checked = hass.states[this.config.toggle].state === 'on';
       toggle.addEventListener('change', () => {
         hass.callService('input_boolean', 'toggle', {
           'entity_id': this.config.toggle,
@@ -77,7 +79,7 @@ class Timer24hCard extends HTMLElement {
   
   _content(hass) {
     const enabled = hass.states[this.config.toggle] && 
-      hass.states[this.config.toggle].state == 'on';
+      hass.states[this.config.toggle].state === 'on';
     const content = document.createElement('DIV');
     content.style.padding = '0px 16px 8px';
     for (const entity of this.config.entities) {
@@ -109,8 +111,6 @@ function _createTimer(entity, name, hass, enabled) {
 }
 
 function _createTimerButtons(entity, enabled) {
-  const am = entity.state & AM_MASK;
-  const pm = entity.state / PM_SHIFT;  
   const timer = document.createElement('DIV');
   const onclick = function() { timer.dialog.show(); };
   for (var i = 0; i < (HALF_DAY_BITS * 2); i++) {
@@ -125,11 +125,7 @@ function _createTimerButtons(entity, enabled) {
       button.style.marginLeft = '-1px';
     }
     if (enabled) {
-      if ((i < HALF_DAY_BITS ? am : pm) & Math.pow(2, (i % HALF_DAY_BITS))) {
-        button.style.backgroundColor = ON_BACKGROUND;
-      } else {
-        button.style.backgroundColor = OFF_BACKGROUND;
-      }
+      _setButtonColor(button, entity, i);
       button.onclick = onclick;
       button.style.cursor = 'pointer';
     } else {
@@ -140,6 +136,19 @@ function _createTimerButtons(entity, enabled) {
   }
   timer.appendChild(_createTimerHours(timer, enabled));
   return timer;
+}
+
+function _setButtonColor(button, entity, index) {
+  const bitmap = (index < HALF_DAY_BITS) ? 
+    (entity.state & AM_MASK) : (entity.state / PM_SHIFT);
+  const bit = Math.pow(2, (index % HALF_DAY_BITS));
+  if (bitmap & bit) {
+    button.style.color = ON_TEXT;
+    button.style.backgroundColor = ON_BACKGROUND;
+  } else {
+    button.style.color = OFF_TEXT;
+    button.style.backgroundColor = OFF_BACKGROUND;
+  }  
 }
 
 function _createTimerHours(timer, enabled) {
@@ -166,14 +175,16 @@ function _createTimerHours(timer, enabled) {
 }
 
 function _createDialog(entity, name, hass) {
-  const am = entity.state & AM_MASK;
-  const pm = entity.state / PM_SHIFT;
   const dialog = document.createElement('ha-dialog');
-  dialog.heading = name;
+  dialog.heading = _dialogHeader(name, dialog, hass);
   dialog.open = false;
   dialog.addEventListener('closing', () => { 
     _onClosingDialog(dialog, entity.entity_id, hass);
   });
+  const content = document.createElement('SPAN');
+  content.class = 'content';
+  dialog.content = content;
+  dialog.appendChild(content);
   for (var i = 0; i < (HALF_DAY_BITS * 2); i++) {
     const button = document.createElement('BUTTON');
     button.type = 'button';
@@ -194,25 +205,40 @@ function _createDialog(entity, name, hass) {
     button.innerText = 
       ((hour < 10) ? '0' : '') + hour.toString() +
       ((i % 2 === 0) ? ':00' : ':30');
-    if ((i < HALF_DAY_BITS ? am : pm) & Math.pow(2, (i % HALF_DAY_BITS))) {
-      button.style.color = ON_TEXT;
-      button.style.backgroundColor = ON_BACKGROUND;
-    } else {
-      button.style.color = OFF_TEXT;
-      button.style.backgroundColor = OFF_BACKGROUND;
-    }
+    _setButtonColor(button, entity, i);
     button.onclick = _onClickDialog;
-    dialog.appendChild(button);
+    content.appendChild(button);
     if ((i + 1) % DIALOG_ROW === 0) {
-      dialog.appendChild(document.createElement('BR'));
+      content.appendChild(document.createElement('BR'));
     }
   }
 
   return dialog; 
 }
 
+function _dialogHeader(name, dialog) {
+  const header = document.createElement('DIV');
+  header.style.color = OFF_TEXT;
+  header.style.borderBottom = '1px solid gray';
+  header.style.display = 'flex';
+  const button = document.createElement('mwc-icon-button');
+  button.style.marginLeft = '-18px'
+  button.onclick = function() { dialog.close(); };
+  header.appendChild(button);
+  const icon = document.createElement('ha-svg-icon');
+  icon.path = mdiClose;
+  button.appendChild(icon);
+  const title = document.createElement('DIV');
+  title.class = 'main-title';
+  title.style.margin = '10px 0px 0px 15px';
+  title.style.display = 'inline';
+  title.innerText = name;
+  header.appendChild(title);
+  return header;
+}
+
 function _onClickDialog() {
-  if (this.style.backgroundColor == ON_BACKGROUND) {
+  if (this.style.backgroundColor === ON_BACKGROUND) {
     this.style.color = OFF_TEXT;
     this.style.backgroundColor = OFF_BACKGROUND;
   } else {
@@ -224,11 +250,11 @@ function _onClickDialog() {
 function _onClosingDialog(dialog, entity_id, hass) {
   var value = 0;
   var index = 0;
-  for (const element of dialog.children) {
+  for (const element of dialog.content.children) {
     if (element.nodeName !== 'BUTTON') {
       continue;
     }
-    if (element.style.backgroundColor == ON_BACKGROUND) {
+    if (element.style.backgroundColor === ON_BACKGROUND) {
       value += Math.pow(2, index);
     }
     index++;
