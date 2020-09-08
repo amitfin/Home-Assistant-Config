@@ -5,14 +5,10 @@ CONFIG_FILE = 'timers-config.yaml'
 GENERATED_FILE = 'automations/timer-automations.yaml'
 DOMAIN_CONFIG = {
   'switch': {
-    'on': 'on',
-    'off': 'off',
     'on_action': 'turn_on',
     'off_action': 'turn_off',
   },
   'cover': {
-    'on': 'open',
-    'off': 'closed',
     'on_action': 'open_cover',
     'off_action': 'close_cover',
   },
@@ -44,7 +40,7 @@ def create(config, on):
   line('      state: \'on\'')
   line('    - condition: template')
   line(('      value_template: "{{ states(\'input_number.%s\') | int | '
-    'bitwise_and(2 ** ((now().hour * 2) + (now().minute // 30))) %s 0}}"')
+    'bitwise_and(2 ** ((now().hour * 2) + (now().minute // 30))) %s 0 }}"')
     % (config['timer'], '>' if on else '=='))
   line('  action:')
   line('    - service: %s.%s' % (config['domain'],
