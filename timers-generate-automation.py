@@ -19,36 +19,30 @@ def main():
   with open(CONFIG_FILE, 'r') as config_file:
     config = yaml.load(config_file, Loader=yaml.SafeLoader)
   for rule in config:
-    create(rule, True)
-    create(rule, False)
-    line('')
+    create(rule)
 
-def create(config, on):
+def create(config):
   domain_config = DOMAIN_CONFIG[config['domain']]
-  name = config['name'] + ('_on' if on else '_off')
-  line('- id: %s' % name)
-  line('  alias: %s'% name)
+  line('- alias: %s'% config['name'])
   line('  trigger:')
   line('    - platform: time_pattern')
   line('      minutes: /30')
   line('    - platform: state')
   line('      entity_id: %s' % config['switch'])
-  line('      to: \'on\'')
   line('  condition:')
   line('    - condition: state')
   line('      entity_id: %s' % config['switch'])
   line('      state: \'on\'')
-  line('    - condition: template')
-  line(('      value_template: "{{ states(\'input_number.%s\') | int | '
-    'bitwise_and(2 ** ((now().hour * 2) + (now().minute // 30))) %s 0 }}"')
-    % (config['timer'], '>' if on else '=='))
   line('  action:')
-  line('    - service: %s.%s' % (config['domain'],
-    domain_config['on_action'] if on else domain_config['off_action']))
+  line('    - service: "%s.{{ \'%s\' if states(\'input_number.%s\') | int | '
+    'bitwise_and(2 ** ((now().hour * 2) + (now().minute // 30))) > 0 '
+    'else \'%s\' }}"' % (config['domain'], domain_config['on_action'],
+    config['timer'], domain_config['off_action']))
   line('      entity_id:')
   for entity in config['entities']:
     line('        - %s.%s' % (config['domain'], entity))
-  
+  line('')
+
 def line(content):
   out.write(content + '\n')
 

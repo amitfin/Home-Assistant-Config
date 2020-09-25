@@ -1,6 +1,7 @@
 const mdiClose = 'M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z';
 
-// JS converts numbers to 32 bits signed integers for bitwise operations
+// JS converts numbers to 32-bits signed integers for bitwise operations.
+// So, we break the number to two 24-bits, for each 12 hours (2 bits per hour).
 const HALF_DAY_BITS = 24;
 const AM_MASK = Math.pow(2, HALF_DAY_BITS) - 1;
 const PM_SHIFT = Math.pow(2, HALF_DAY_BITS);
@@ -16,11 +17,6 @@ class Timer24hCard extends HTMLElement {
       return;
     }
 
-    OFF_BACKGROUND = getComputedStyle(document.documentElement).
-    getPropertyValue('--card-background-color');
-    OFF_TEXT = getComputedStyle(document.documentElement).
-    getPropertyValue('--primary-text-color');
-
     if (!this.card) {
       this.card = document.createElement('ha-card');
       this.appendChild(this.card);
@@ -33,6 +29,7 @@ class Timer24hCard extends HTMLElement {
       this.open_dialogs = open_dialogs;
     }
 
+    _setOffColors();
     this.card.appendChild(this._header(hass));
     this.card.appendChild(this._content(hass, this.open_dialogs));
     this.prev_hass = hass;
@@ -129,6 +126,13 @@ class Timer24hCard extends HTMLElement {
   }
 }
 
+function _setOffColors() {
+  OFF_BACKGROUND = getComputedStyle(document.documentElement).
+    getPropertyValue('--card-background-color');
+  OFF_TEXT = getComputedStyle(document.documentElement).
+    getPropertyValue('--primary-text-color');
+}
+
 function _createTimer(entity, name, hass, enabled, open_dialogs) {
   const timer = _createTimerButtons(entity, enabled);
   const dialog = _createDialog(entity, name, hass, open_dialogs);
@@ -154,6 +158,7 @@ function _createTimerButtons(entity, enabled) {
     button.style.height = '20px';
     button.style.padding = '0px';
     button.style.border = '1px solid silver';
+    button.style.outline = 'none';
     button.style.margin = '0px';
     if (i > 0) {
       button.style.marginLeft = '-1px';
@@ -232,6 +237,7 @@ function _createDialog(entity, name, hass, open_dialogs) {
     button.style.height = '40px';
     button.style.padding = '0px';
     button.style.border = '1px solid silver';
+    button.style.outline = 'none';
     button.style.margin = '0px';
     button.style.cursor = 'pointer';
     if (i % DIALOG_ROW !== 0) {

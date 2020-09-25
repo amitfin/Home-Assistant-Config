@@ -4,6 +4,10 @@
     platform: sun
     event: sunset
     offset: '-00:45:00'
+  condition:
+    - condition: state
+      entity_id: group.shabbat_timers_in_effect_main_floor
+      state: 'off'
   action:
     service: switch.turn_on
     entity_id: switch.shelly_shsw_pm_766cbe # entrance light
@@ -14,6 +18,10 @@
     platform: sun
     event: sunset
     offset: '03:00:00'
+  condition:
+    - condition: state
+      entity_id: group.shabbat_timers_in_effect_main_floor
+      state: 'off'
   action:
     service: cover.close_cover
     entity_id: 
@@ -21,10 +29,14 @@
       - cover.shelly_shsw_25_68c63af981be
 
 - id: midnight
-  alias: lists off and close windows every midnight
+  alias: lights off and close windows every midnight
   trigger:
     platform: time
     at: '00:00:00'
+  condition:
+    - condition: state
+      entity_id: group.shabbat_timers_in_effect_main_floor
+      state: 'off'
   action:
     - service: switch.turn_off
       entity_id: 
