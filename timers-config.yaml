@@ -5,6 +5,7 @@
   entities:
     - shelly_shsw_pm_766cbe
     - shelly_shsw_25_68c63af91b61_1
+    - shelly_shsw_25_68c63af91b61_2
 
 - name: shabbat_main_floor_windows
   switch: group.shabbat_timers_in_effect_main_floor

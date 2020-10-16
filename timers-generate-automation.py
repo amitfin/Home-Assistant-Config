@@ -25,18 +25,16 @@ def create(config):
   domain_config = DOMAIN_CONFIG[config['domain']]
   line('- alias: %s'% config['name'])
   line('  trigger:')
-  line('    - platform: time_pattern')
-  line('      minutes: /30')
   line('    - platform: state')
-  line('      entity_id: %s' % config['switch'])
+  line('      entity_id: %s, input_timetable.%s' % (
+    config['switch'], config['timer']))
   line('  condition:')
   line('    - condition: state')
   line('      entity_id: %s' % config['switch'])
   line('      state: \'on\'')
   line('  action:')
-  line('    - service: "%s.{{ \'%s\' if states(\'input_number.%s\') | int | '
-    'bitwise_and(2 ** ((now().hour * 2) + (now().minute // 30))) > 0 '
-    'else \'%s\' }}"' % (config['domain'], domain_config['on_action'],
+  line('    - service: "%s.{{ \'%s\' if is_state(\'input_timetable.%s\', '
+    '\'on\') else \'%s\' }}"' % (config['domain'], domain_config['on_action'],
     config['timer'], domain_config['off_action']))
   line('      entity_id:')
   for entity in config['entities']:
