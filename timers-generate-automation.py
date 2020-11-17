@@ -33,8 +33,8 @@ def create(config):
   line('      entity_id: %s' % config['switch'])
   line('      state: \'on\'')
   line('  action:')
-  line('    - service: "%s.{{ \'%s\' if is_state(\'input_timetable.%s\', '
-    '\'on\') else \'%s\' }}"' % (config['domain'], domain_config['on_action'],
+  line('    - service: %s.{{ \'%s\' if is_state(\'input_timetable.%s\', '
+    '\'on\') else \'%s\' }}' % (config['domain'], domain_config['on_action'],
     config['timer'], domain_config['off_action']))
   line('      entity_id:')
   for entity in config['entities']:

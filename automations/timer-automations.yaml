@@ -9,7 +9,7 @@
       entity_id: group.shabbat_timers_in_effect_main_floor
       state: 'on'
   action:
-    - service: "switch.{{ 'turn_on' if is_state('input_timetable.shabbat_main_floor', 'on') else 'turn_off' }}"
+    - service: switch.{{ 'turn_on' if is_state('input_timetable.shabbat_main_floor', 'on') else 'turn_off' }}
       entity_id:
         - switch.shelly_shsw_pm_766cbe
         - switch.shelly_shsw_25_68c63af91b61_1
@@ -24,7 +24,7 @@
       entity_id: group.shabbat_timers_in_effect_main_floor
       state: 'on'
   action:
-    - service: "cover.{{ 'open_cover' if is_state('input_timetable.shabbat_main_floor', 'on') else 'close_cover' }}"
+    - service: cover.{{ 'open_cover' if is_state('input_timetable.shabbat_main_floor', 'on') else 'close_cover' }}
       entity_id:
         - cover.shelly_shsw_25_b92fd1
         - cover.shelly_shsw_25_68c63af981be
@@ -38,7 +38,7 @@
       entity_id: group.shabbat_timers_in_effect_main_floor
       state: 'on'
   action:
-    - service: "switch.{{ 'turn_on' if is_state('input_timetable.shabbat_hot_plate', 'on') else 'turn_off' }}"
+    - service: switch.{{ 'turn_on' if is_state('input_timetable.shabbat_hot_plate', 'on') else 'turn_off' }}
       entity_id:
         - switch.shelly_shsw_1_e09806958318
 
@@ -51,7 +51,7 @@
       entity_id: group.shabbat_timers_in_effect_master_bedroom
       state: 'on'
   action:
-    - service: "switch.{{ 'turn_on' if is_state('input_timetable.shabbat_master_bedroom_lights', 'on') else 'turn_off' }}"
+    - service: switch.{{ 'turn_on' if is_state('input_timetable.shabbat_master_bedroom_lights', 'on') else 'turn_off' }}
       entity_id:
         - switch.shelly_shsw_pm_766477
 
@@ -64,7 +64,7 @@
       entity_id: group.shabbat_timers_in_effect_master_bedroom
       state: 'on'
   action:
-    - service: "switch.{{ 'turn_on' if is_state('input_timetable.shabbat_master_bedroom_ac', 'on') else 'turn_off' }}"
+    - service: switch.{{ 'turn_on' if is_state('input_timetable.shabbat_master_bedroom_ac', 'on') else 'turn_off' }}
       entity_id:
         - switch.shelly_shsw_1_e098069513b6
 
@@ -77,7 +77,7 @@
       entity_id: group.shabbat_timers_in_effect_reut
       state: 'on'
   action:
-    - service: "switch.{{ 'turn_on' if is_state('input_timetable.shabbat_reut_ac', 'on') else 'turn_off' }}"
+    - service: switch.{{ 'turn_on' if is_state('input_timetable.shabbat_reut_ac', 'on') else 'turn_off' }}
       entity_id:
         - switch.shelly_shsw_1_68c63afa10ab
 
@@ -90,7 +90,7 @@
       entity_id: group.shabbat_timers_in_effect_shaked
       state: 'on'
   action:
-    - service: "switch.{{ 'turn_on' if is_state('input_timetable.shabbat_shaked_ac', 'on') else 'turn_off' }}"
+    - service: switch.{{ 'turn_on' if is_state('input_timetable.shabbat_shaked_ac', 'on') else 'turn_off' }}
       entity_id:
         - switch.shelly_shsw_1_68c63afa64e2
 
@@ -103,7 +103,7 @@
       entity_id: group.shabbat_timers_in_effect_roei
       state: 'on'
   action:
-    - service: "switch.{{ 'turn_on' if is_state('input_timetable.shabbat_roei_ac', 'on') else 'turn_off' }}"
+    - service: switch.{{ 'turn_on' if is_state('input_timetable.shabbat_roei_ac', 'on') else 'turn_off' }}
       entity_id:
         - switch.shelly_shsw_1_e098069585b6
 
