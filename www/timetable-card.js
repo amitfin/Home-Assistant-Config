@@ -1,12 +1,6 @@
 const mdiClose = 'M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z';
-const mdiPlus = 'M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z'
-
-// const BUTTONS_COUNT = 48
-// const ON_BACKGROUND = 'forestgreen';
-// const ON_TEXT = 'white';
-// var OFF_BACKGROUND;
-// var OFF_TEXT;
-// const DIALOG_ROW = 8;
+const mdiPlus = 'M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z';
+const mdiTrash = 'M19 4h-3.5l-1-1h-5l-1 1H5v2h14M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v12z';
 
 class TimetableCard extends HTMLElement {
   set hass(hass) {
@@ -24,7 +18,6 @@ class TimetableCard extends HTMLElement {
       this.open_dialogs = open_dialogs;
     }
 
-    // _setOffColors();
     this.card.appendChild(this._header(hass));
     this.card.appendChild(this._content(hass, this.open_dialogs));
     this.prev_hass = hass;
@@ -160,19 +153,24 @@ function _createDialog(entity, name, open_dialogs, hass) {
   const plus = document.createElement('DIV');
   plus.style.display = 'flex';
   plus.style.justifyContent = 'center';
-  const button = document.createElement('mwc-icon-button');
-  button.onclick = function() {
+  plus.onclick = function() {
     hass.callService('input_timetable', 'set', {
       'entity_id': entity.entity_id,
       'time': '00:00:00',
       'state': 'on',
     });
   };
+  const button = document.createElement('mwc-icon-button');
   plus.appendChild(button);
   const icon = document.createElement('ha-svg-icon');
   icon.path = mdiPlus;
   button.appendChild(icon);
-  dialog.appendChild(plus)
+
+  const text = document.createElement('P');
+  text.innerText = 'Add entry';
+  plus.appendChild(text);
+  
+  dialog.appendChild(plus);
 
   dialog.addEventListener('opening', () => {
     open_dialogs[entity.entity_id] = true;
@@ -186,7 +184,6 @@ function _createDialog(entity, name, open_dialogs, hass) {
 
 function _dialogHeader(name, dialog) {
   const header = document.createElement('DIV');
-  // header.style.color = OFF_TEXT;
   header.style.display = 'flex';
   const button = document.createElement('mwc-icon-button');
   button.style.marginLeft = '-18px'
@@ -207,7 +204,7 @@ function _dialogHeader(name, dialog) {
 function _row(event, index, dialog) {
   const row = document.createElement('DIV');
   row.style.display = 'flex';
-  row.style.justifyContent = 'center';
+  row.style.justifyContent = 'space-around';
 
   const time = event.time.split(":");
   const time_input = document.createElement('INPUT');
@@ -241,7 +238,7 @@ function _row(event, index, dialog) {
   };
   row.appendChild(button);
   const icon = document.createElement('ha-svg-icon');
-  icon.path = mdiClose;
+  icon.path = mdiTrash;
   button.appendChild(icon);
 
   return row;
@@ -253,169 +250,5 @@ function _reconfig(dialog) {
     'timetable': dialog.timetable,
   });
 }
-
-/*
-  return html` <div class="flex">
-    <paper-time-input
-      .hour=${time[0]}
-      .min=${time[1]}
-      format="24"
-      label=""
-      @hour-changed=${(ev: { detail: { value: string } }) => {
-        this._updateEventTime(ev.detail.value, 0, event);
-      }}
-      @min-changed=${(ev: { detail: { value: string } }) => {
-        this._updateEventTime(ev.detail.value, 1, event);
-      }}
-    ></paper-time-input>
-    <ha-switch
-      .checked=${event.state === BINARY_STATE_ON}
-      @change=${(ev: { target: any }) => {
-        this._updateEventState((ev.target as HaSwitch).checked, event);
-      }}
-    ></ha-switch>
-    <mwc-icon-button
-      @click=${() => {
-        this._delete(index);
-      }}
-    >
-      <ha-svg-icon path=${mdiClose}></ha-svg-icon>
-    </mwc-icon-button>
-  </div>`;
-  */
-
-
-/*
-
-function _setOffColors() {
-  OFF_BACKGROUND = getComputedStyle(document.documentElement).
-    getPropertyValue('--card-background-color');
-  OFF_TEXT = getComputedStyle(document.documentElement).
-    getPropertyValue('--primary-text-color');
-}
-
-function _indexToDate(index) {
-  return new Date('1/1/00 ' + ~~(index / 2) + (index % 2 ? ':30' : ':00'));
-}
-
-function _timeToDate(time) {
-  return new Date('1/1/00 ' + time);
-}
-
-function _dateToHour(date) {
-  return date.toString().split(' ')[4];
-}
-
-function _isOn(entity, index) {
-  const timetable = entity.attributes.timetable;
-  if (!timetable.length) {
-    return false;
-  }
-  const time = _indexToDate(index);
-  let state = timetable[timetable.length - 1].state;
-  let start = _indexToDate(0).getTime();
-  for (const current of timetable) {
-    const end = _timeToDate(current.time).getTime();
-    if (time >= start && time < end) {
-      break;
-    }
-    start = end;
-    state = current.state;
-  }
-  return state === 'on';  
-}
-
-function _setButtonColor(button, entity, index) {
-  if (_isOn(entity, index)) {
-    button.style.color = ON_TEXT;
-    button.style.backgroundColor = ON_BACKGROUND;
-  } else {
-    button.style.color = OFF_TEXT;
-    button.style.backgroundColor = OFF_BACKGROUND;
-  }
-}
-
-function _createDialog(entity, name, hass) {
-  const dialog = document.createElement('ha-dialog');
-  dialog.heading = _dialogHeader(name, dialog, hass);
-  dialog.open = false;
-  dialog.addEventListener('closing', () => {
-    _onClosingDialog(dialog, entity, hass);
-  });
-  const content = document.createElement('SPAN');
-  dialog.content = content;
-  dialog.appendChild(content);
-  for (var i = 0; i < BUTTONS_COUNT; i++) {
-    const button = document.createElement('BUTTON');
-    button.type = 'button';
-    button.style.textAlign = 'center';
-    button.style.width = '40px';
-    button.style.height = '40px';
-    button.style.padding = '0px';
-    button.style.border = '1px solid silver';
-    button.style.outline = 'none';
-    button.style.margin = '0px';
-    button.style.cursor = 'pointer';
-    if (i % DIALOG_ROW !== 0) {
-      button.style.marginLeft = '-1px';
-    }
-    if (i >= DIALOG_ROW) {
-      button.style.marginTop = '-1px';
-    }
-    const hour = Math.floor(i / 2);
-    button.innerText =
-      ((hour < 10) ? '0' : '') + hour.toString() +
-      ((i % 2 === 0) ? ':00' : ':30');
-    _setButtonColor(button, entity, i);
-    button.onclick = _onClickDialog;
-    content.appendChild(button);
-    if ((i + 1) % DIALOG_ROW === 0) {
-      content.appendChild(document.createElement('BR'));
-    }
-  }
-
-  return dialog;
-}
-
-function _onClickDialog() {
-  if (this.style.backgroundColor === ON_BACKGROUND) {
-    this.style.color = OFF_TEXT;
-    this.style.backgroundColor = OFF_BACKGROUND;
-  } else {
-    this.style.color = ON_TEXT;
-    this.style.backgroundColor = ON_BACKGROUND;
-  }
-}
-
-function _onClosingDialog(dialog, entity, hass) {
-  let timetable = [];
-  let prev_on = false;
-  let index = 0;
-  for (const element of dialog.content.children) {
-    if (element.nodeName !== 'BUTTON') {
-      continue;
-    }
-    const on = element.style.backgroundColor === ON_BACKGROUND;
-    if (index === 0 || prev_on !== on) {
-      timetable.push({
-        'time': _dateToHour(_indexToDate(index)),
-        'state': on ? 'on' : 'off',
-      })
-    }
-    prev_on = on;
-    index++;
-  }
-  if (timetable.length === 1 && timetable[0].state === 'off') {
-    timetable = [];
-  } else if (timetable.length > 1 && 
-    timetable[0].state === timetable[timetable.length - 1].state) {
-    timetable.shift();
-  }
-  hass.callService('input_timetable', 'reconfig', {
-    'entity_id': entity.entity_id,
-    'timetable': timetable,
-  });
-}
-*/
 
 customElements.define('timetable-card', TimetableCard);
