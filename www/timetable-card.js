@@ -175,6 +175,7 @@ function _createDialog(entity, name, hass) {
   plus.onclick = function () {
     dialog.timetable.push({ time: "00:00:00", state: "on" });
     _createDialogRows(dialog);
+    _reconfig(dialog);
   };
   const button = document.createElement("mwc-icon-button");
   plus.appendChild(button);
