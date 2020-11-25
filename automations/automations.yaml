@@ -10,7 +10,7 @@
       state: 'off'
   action:
     service: switch.turn_on
-    entity_id: switch.shelly_shsw_pm_766cbe # entrance light
+    entity_id: switch.entrance_lights
     
 - id: evening-windows
   alias: close windows every night
@@ -25,8 +25,8 @@
   action:
     service: cover.close_cover
     entity_id: 
-      - cover.shelly_shsw_25_b92fd1
-      - cover.shelly_shsw_25_68c63af981be
+      - cover.living_room_windows
+      - cover.dinning_room_windows
 
 - id: midnight
   alias: lights off and close windows every midnight
@@ -40,13 +40,13 @@
   action:
     - service: switch.turn_off
       entity_id: 
-        - switch.shelly_shsw_pm_766cbe
-        - switch.shelly_shsw_25_68c63af91b61_1 # living room lights
-        - switch.shelly_shsw_25_68c63af91b61_2 # living room peripheral
+        - switch.entrance_lights
+        - switch.living_room_lights
+        - switch.living_room_peripheral_lights
     - service: cover.close_cover
       entity_id: 
-        - cover.shelly_shsw_25_b92fd1
-        - cover.shelly_shsw_25_68c63af981be
+        - cover.living_room_windows
+        - cover.dinning_room_windows
 
 - id: shabbat-starts
   alias: setup house when Shabbat starts
@@ -58,10 +58,11 @@
   action:
     - service: switch.turn_on
       entity_id: 
-        - switch.shelly_shsw_25_68c63af91b61_2
+        - switch.living_room_lights
+        - switch.living_room_peripheral_lights
     - service: switch.turn_off
       entity_id: 
-        - switch.shelly_shsw_1_e0980695175b
+        - switch.master_bedroom_smart_toilet
     - service: media_player.turn_off
       entity_id: 
         - media_player.nestmini9591
@@ -77,9 +78,9 @@
   action:
     - service: switch.turn_on
       entity_id: 
-        - switch.shelly_shsw_1_e09806958318 # hot plate
-        - switch.shelly_shsw_1_e098069513b6 # master AC
-        - switch.shelly_shsw_1_68c63afa10ab # Reut AC
-        - switch.shelly_shsw_1_68c63afa64e2 # Shaked AC
-        - switch.shelly_shsw_1_e098069585b6 # Roei AC
-        - switch.shelly_shsw_1_e0980695175b # Smart toliet
+        - switch.hot_plate
+        - switch.master_bedroom_ac
+        - switch.reut_ac
+        - switch.shaked_ac
+        - switch.roei_ac
+        - switch.master_bedroom_smart_toilet
