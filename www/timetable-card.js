@@ -112,13 +112,15 @@ class TimetableCard extends HTMLElement {
         _updateSummary(row.timetable, state);
       }
       const dialog = row.timetable.dialog;
-      const old_timetable = [...dialog.timetable];
+      const old_timetable = 
+        [...dialog.timetable].filter(entry => entry.time !== null);
       old_timetable.sort((x, y) => (x.time < y.time ? -1 : 1));
       const new_timetable = state.attributes.timetable;
       if (JSON.stringify(old_timetable) !== JSON.stringify(new_timetable)) {
         dialog.timetable = [...new_timetable];
         _createDialogRows(dialog);
       }
+      dialog.plus.button.disabled = _invalid_timetable(dialog.timetable);
     }
   }
 }
@@ -172,12 +174,8 @@ function _createDialog(entity, name, hass) {
   const plus = document.createElement("DIV");
   plus.style.display = "flex";
   plus.style.justifyContent = "center";
-  plus.onclick = function () {
-    dialog.timetable.push({ time: "00:00:00", state: "on" });
-    _createDialogRows(dialog);
-    _reconfig(dialog);
-  };
   const button = document.createElement("mwc-icon-button");
+  plus.button = button;
   plus.appendChild(button);
   const icon = document.createElement("ha-svg-icon");
   icon.path = mdiPlus;
@@ -185,6 +183,14 @@ function _createDialog(entity, name, hass) {
   const text = document.createElement("P");
   text.innerText = "Add entry";
   plus.appendChild(text);
+  plus.onclick = function () {
+    if (button.disabled === true) {
+      return;
+    }
+    button.disabled = true;
+    dialog.timetable.push({ time: null, state: "on" });
+    _createDialogRows(dialog);
+  };
   dialog.plus = plus;
 
   _createDialogRows(dialog);
@@ -224,11 +230,16 @@ function _row(event, index, dialog) {
   row.style.display = "flex";
   row.style.justifyContent = "space-around";
 
-  const time = event.time.split(":");
   const time_input = document.createElement("INPUT");
   time_input.setAttribute("type", "time");
-  time_input.value = time[0] + ":" + time[1];
+  if (event.time !== null) {
+    const time = event.time.split(":");
+    time_input.value = time[0] + ":" + time[1];
+  }
   time_input.onblur = function () {
+    if (time_input.value === "") {
+      return;
+    }
     const time = time_input.value + ":00";
     if (event.time !== time) {
       event.time = time;
@@ -263,7 +274,15 @@ function _row(event, index, dialog) {
   return row;
 }
 
+function _invalid_timetable(timetable) {
+  return timetable.filter(entry => entry.time === null).length > 0;
+}
+
 function _reconfig(dialog) {
+  if (_invalid_timetable(dialog.timetable)) {
+    return;
+  }
+  dialog.plus.button.disabled = false;    
   dialog.hass.callService("input_timetable", "reconfig", {
     entity_id: dialog.entity_id,
     timetable: dialog.timetable,
