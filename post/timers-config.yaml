@@ -1,0 +1,152 @@
+- timer: shabbat_main_floor_lights
+  switch: group.shabbat_timers_in_effect_main_floor
+  domain: light
+  entities:
+    - kitchen_main_light
+    - kitchen_counter_lights
+    - kitchen_spot_lights
+    - living_room_main_lights
+    - dining_room_main_light
+    - dining_room_upper_light
+
+- timer: shabbat_main_floor_other_lights
+  switch: group.shabbat_timers_in_effect_main_floor
+  domain: light
+  entities:
+    - family_room_peripheral_lights
+    - family_room_up_down_lights
+    - living_room_curtains_lights
+    - living_room_peripheral_lights
+    - living_room_up_down_lights
+    - south_curtain_lights
+
+- timer: shabbat_hot_plate
+  switch: group.shabbat_timers_in_effect_main_floor
+  domain: switch
+  entities:
+    - hot_plate
+
+- timer: shabbat_main_floor_blinds
+  switch: group.shabbat_timers_in_effect_main_floor
+  domain: cover
+  entities:
+    - kitchen_window
+    - living_room_door
+    - living_room_north
+    - living_room_west
+    - living_room_window
+
+- timer: shabbat_family_room_door
+  switch: group.shabbat_timers_in_effect_main_floor
+  domain: cover
+  entities:
+    - family_room_door
+
+- timer: shabbat_pergula_lights
+  switch: group.shabbat_timers_in_effect_main_floor
+  domain: light
+  entities:
+    - pergola_lights
+
+- timer: shabbat_dishwasher
+  switch: group.shabbat_timers_in_effect_main_floor
+  domain: switch
+  entities:
+    - meat_dishwasher
+
+- timer: shabbat_living_room_ac
+  switch: group.shabbat_timers_in_effect_main_floor
+  domain: climate
+  entities:
+    - living_room_ac
+
+- timer: shabbat_kitchen_ac
+  switch: group.shabbat_timers_in_effect_main_floor
+  domain: climate
+  entities:
+    - kitchen_ac
+
+- timer: shabbat_family_room_ac
+  switch: group.shabbat_timers_in_effect_guest_room
+  domain: climate
+  entities:
+    - family_room_ac
+
+- timer: shabbat_guest_room_lights
+  switch: group.shabbat_timers_in_effect_main_floor
+  domain: light
+  entities:
+    - guest_room_main_light
+
+- timer: shabbat_guest_bathroom_lights
+  switch: group.shabbat_timers_in_effect_guest_room
+  domain: light
+  entities:
+    - guest_room_bathroom_lights
+
+- timer: shabbat_guest_room_ac
+  switch: group.shabbat_timers_in_effect_guest_room
+  domain: light
+  entities:
+    - guest_room_main_light
+
+- timer: shabbat_master_bedroom_ac
+  switch: group.shabbat_timers_in_effect_master_bedroom
+  domain: climate
+  entities:
+    - master_bedroom_ac
+
+- timer: shabbat_reut_ac
+  switch: group.shabbat_timers_in_effect_reut
+  domain: climate
+  entities:
+    - reut_ac
+
+- timer: shabbat_shaked_ac
+  switch: group.shabbat_timers_in_effect_shaked
+  domain: climate
+  entities:
+    - shaked_ac
+
+- timer: shabbat_roei_ac
+  switch: group.shabbat_timers_in_effect_roei
+  domain: climate
+  entities:
+    - roei_ac
+
+- timer: shabbat_maayan_ac
+  switch: group.shabbat_timers_in_effect_maayan
+  domain: climate
+  entities:
+    - maayan_ac
+
+- timer: shabbat_middle_floor_hallway
+  switch: group.shabbat_timers_in_effect_middle_floor
+  domain: light
+  entities:
+    - middle_floor_hallway_ceiling
+
+- timer: shabbat_master_bedroom_bathroom
+  switch: group.shabbat_timers_in_effect_master_bedroom
+  domain: light
+  entities:
+    - master_bedroom_bathroom_lights
+
+- timer: shabbat_walk_in_closet
+  switch: group.shabbat_timers_in_effect_master_bedroom
+  domain: light
+  entities:
+    - walk_in_closet
+
+- timer: shabbat_shaked_lights
+  switch: group.shabbat_timers_in_effect_shaked
+  domain: light
+  entities:
+    - shaked_main_light
+
+- timer: shabbat_shaked_windows
+  switch: group.shabbat_timers_in_effect_shaked
+  domain: cover
+  entities:
+    - shaked_north_window
+    - shaked_south_window
