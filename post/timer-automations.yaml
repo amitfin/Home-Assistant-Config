@@ -1,0 +1,232 @@
+# GENERATED FILE - DO NOT EDIT MANUALLY
+
+- id: shabbat_main_floor_lights
+  alias: shabbat_main_floor_lights
+  trigger:
+    - platform: state
+      entity_id: group.shabbat_timers_in_effect_main_floor, input_timetable.shabbat_main_floor_lights
+  condition: "{{ is_state('group.shabbat_timers_in_effect_main_floor', 'on') }}"
+  action:
+    - service: light.{{ iif(is_state('input_timetable.shabbat_main_floor_lights', 'on'), 'turn_on', 'turn_off') }}
+      entity_id: light.kitchen_main_light, light.kitchen_counter_lights, light.kitchen_spot_lights, light.living_room_main_lights, light.dining_room_main_light, light.dining_room_upper_light
+
+- id: shabbat_main_floor_other_lights
+  alias: shabbat_main_floor_other_lights
+  trigger:
+    - platform: state
+      entity_id: group.shabbat_timers_in_effect_main_floor, input_timetable.shabbat_main_floor_other_lights
+  condition: "{{ is_state('group.shabbat_timers_in_effect_main_floor', 'on') }}"
+  action:
+    - service: light.{{ iif(is_state('input_timetable.shabbat_main_floor_other_lights', 'on'), 'turn_on', 'turn_off') }}
+      entity_id: light.family_room_peripheral_lights, light.family_room_up_down_lights, light.living_room_curtains_lights, light.living_room_peripheral_lights, light.living_room_up_down_lights, light.south_curtain_lights
+
+- id: shabbat_hot_plate
+  alias: shabbat_hot_plate
+  trigger:
+    - platform: state
+      entity_id: group.shabbat_timers_in_effect_main_floor, input_timetable.shabbat_hot_plate
+  condition: "{{ is_state('group.shabbat_timers_in_effect_main_floor', 'on') }}"
+  action:
+    - service: switch.{{ iif(is_state('input_timetable.shabbat_hot_plate', 'on'), 'turn_on', 'turn_off') }}
+      entity_id: switch.hot_plate
+
+- id: shabbat_main_floor_blinds
+  alias: shabbat_main_floor_blinds
+  trigger:
+    - platform: state
+      entity_id: group.shabbat_timers_in_effect_main_floor, input_timetable.shabbat_main_floor_blinds
+  condition: "{{ is_state('group.shabbat_timers_in_effect_main_floor', 'on') }}"
+  action:
+    - service: cover.{{ iif(is_state('input_timetable.shabbat_main_floor_blinds', 'on'), 'open_cover', 'close_cover') }}
+      entity_id: cover.kitchen_window, cover.living_room_door, cover.living_room_north, cover.living_room_west, cover.living_room_window
+
+- id: shabbat_family_room_door
+  alias: shabbat_family_room_door
+  trigger:
+    - platform: state
+      entity_id: group.shabbat_timers_in_effect_main_floor, input_timetable.shabbat_family_room_door
+  condition: "{{ is_state('group.shabbat_timers_in_effect_main_floor', 'on') }}"
+  action:
+    - service: cover.{{ iif(is_state('input_timetable.shabbat_family_room_door', 'on'), 'open_cover', 'close_cover') }}
+      entity_id: cover.family_room_door
+
+- id: shabbat_pergula_lights
+  alias: shabbat_pergula_lights
+  trigger:
+    - platform: state
+      entity_id: group.shabbat_timers_in_effect_main_floor, input_timetable.shabbat_pergula_lights
+  condition: "{{ is_state('group.shabbat_timers_in_effect_main_floor', 'on') }}"
+  action:
+    - service: light.{{ iif(is_state('input_timetable.shabbat_pergula_lights', 'on'), 'turn_on', 'turn_off') }}
+      entity_id: light.pergola_lights
+
+- id: shabbat_dishwasher
+  alias: shabbat_dishwasher
+  trigger:
+    - platform: state
+      entity_id: group.shabbat_timers_in_effect_main_floor, input_timetable.shabbat_dishwasher
+  condition: "{{ is_state('group.shabbat_timers_in_effect_main_floor', 'on') }}"
+  action:
+    - service: switch.{{ iif(is_state('input_timetable.shabbat_dishwasher', 'on'), 'turn_on', 'turn_off') }}
+      entity_id: switch.meat_dishwasher
+
+- id: shabbat_living_room_ac
+  alias: shabbat_living_room_ac
+  trigger:
+    - platform: state
+      entity_id: group.shabbat_timers_in_effect_main_floor, input_timetable.shabbat_living_room_ac
+  condition: "{{ is_state('group.shabbat_timers_in_effect_main_floor', 'on') }}"
+  action:
+    - service: climate.{{ iif(is_state('input_timetable.shabbat_living_room_ac', 'on'), 'turn_on', 'turn_off') }}
+      entity_id: climate.living_room_ac
+
+- id: shabbat_kitchen_ac
+  alias: shabbat_kitchen_ac
+  trigger:
+    - platform: state
+      entity_id: group.shabbat_timers_in_effect_main_floor, input_timetable.shabbat_kitchen_ac
+  condition: "{{ is_state('group.shabbat_timers_in_effect_main_floor', 'on') }}"
+  action:
+    - service: climate.{{ iif(is_state('input_timetable.shabbat_kitchen_ac', 'on'), 'turn_on', 'turn_off') }}
+      entity_id: climate.kitchen_ac
+
+- id: shabbat_family_room_ac
+  alias: shabbat_family_room_ac
+  trigger:
+    - platform: state
+      entity_id: group.shabbat_timers_in_effect_guest_room, input_timetable.shabbat_family_room_ac
+  condition: "{{ is_state('group.shabbat_timers_in_effect_guest_room', 'on') }}"
+  action:
+    - service: climate.{{ iif(is_state('input_timetable.shabbat_family_room_ac', 'on'), 'turn_on', 'turn_off') }}
+      entity_id: climate.family_room_ac
+
+- id: shabbat_guest_room_lights
+  alias: shabbat_guest_room_lights
+  trigger:
+    - platform: state
+      entity_id: group.shabbat_timers_in_effect_main_floor, input_timetable.shabbat_guest_room_lights
+  condition: "{{ is_state('group.shabbat_timers_in_effect_main_floor', 'on') }}"
+  action:
+    - service: light.{{ iif(is_state('input_timetable.shabbat_guest_room_lights', 'on'), 'turn_on', 'turn_off') }}
+      entity_id: light.guest_room_main_light
+
+- id: shabbat_guest_bathroom_lights
+  alias: shabbat_guest_bathroom_lights
+  trigger:
+    - platform: state
+      entity_id: group.shabbat_timers_in_effect_guest_room, input_timetable.shabbat_guest_bathroom_lights
+  condition: "{{ is_state('group.shabbat_timers_in_effect_guest_room', 'on') }}"
+  action:
+    - service: light.{{ iif(is_state('input_timetable.shabbat_guest_bathroom_lights', 'on'), 'turn_on', 'turn_off') }}
+      entity_id: light.guest_room_bathroom_lights
+
+- id: shabbat_guest_room_ac
+  alias: shabbat_guest_room_ac
+  trigger:
+    - platform: state
+      entity_id: group.shabbat_timers_in_effect_guest_room, input_timetable.shabbat_guest_room_ac
+  condition: "{{ is_state('group.shabbat_timers_in_effect_guest_room', 'on') }}"
+  action:
+    - service: light.{{ iif(is_state('input_timetable.shabbat_guest_room_ac', 'on'), 'turn_on', 'turn_off') }}
+      entity_id: light.guest_room_main_light
+
+- id: shabbat_master_bedroom_ac
+  alias: shabbat_master_bedroom_ac
+  trigger:
+    - platform: state
+      entity_id: group.shabbat_timers_in_effect_master_bedroom, input_timetable.shabbat_master_bedroom_ac
+  condition: "{{ is_state('group.shabbat_timers_in_effect_master_bedroom', 'on') }}"
+  action:
+    - service: climate.{{ iif(is_state('input_timetable.shabbat_master_bedroom_ac', 'on'), 'turn_on', 'turn_off') }}
+      entity_id: climate.master_bedroom_ac
+
+- id: shabbat_reut_ac
+  alias: shabbat_reut_ac
+  trigger:
+    - platform: state
+      entity_id: group.shabbat_timers_in_effect_reut, input_timetable.shabbat_reut_ac
+  condition: "{{ is_state('group.shabbat_timers_in_effect_reut', 'on') }}"
+  action:
+    - service: climate.{{ iif(is_state('input_timetable.shabbat_reut_ac', 'on'), 'turn_on', 'turn_off') }}
+      entity_id: climate.reut_ac
+
+- id: shabbat_shaked_ac
+  alias: shabbat_shaked_ac
+  trigger:
+    - platform: state
+      entity_id: group.shabbat_timers_in_effect_shaked, input_timetable.shabbat_shaked_ac
+  condition: "{{ is_state('group.shabbat_timers_in_effect_shaked', 'on') }}"
+  action:
+    - service: climate.{{ iif(is_state('input_timetable.shabbat_shaked_ac', 'on'), 'turn_on', 'turn_off') }}
+      entity_id: climate.shaked_ac
+
+- id: shabbat_roei_ac
+  alias: shabbat_roei_ac
+  trigger:
+    - platform: state
+      entity_id: group.shabbat_timers_in_effect_roei, input_timetable.shabbat_roei_ac
+  condition: "{{ is_state('group.shabbat_timers_in_effect_roei', 'on') }}"
+  action:
+    - service: climate.{{ iif(is_state('input_timetable.shabbat_roei_ac', 'on'), 'turn_on', 'turn_off') }}
+      entity_id: climate.roei_ac
+
+- id: shabbat_maayan_ac
+  alias: shabbat_maayan_ac
+  trigger:
+    - platform: state
+      entity_id: group.shabbat_timers_in_effect_maayan, input_timetable.shabbat_maayan_ac
+  condition: "{{ is_state('group.shabbat_timers_in_effect_maayan', 'on') }}"
+  action:
+    - service: climate.{{ iif(is_state('input_timetable.shabbat_maayan_ac', 'on'), 'turn_on', 'turn_off') }}
+      entity_id: climate.maayan_ac
+
+- id: shabbat_middle_floor_hallway
+  alias: shabbat_middle_floor_hallway
+  trigger:
+    - platform: state
+      entity_id: group.shabbat_timers_in_effect_middle_floor, input_timetable.shabbat_middle_floor_hallway
+  condition: "{{ is_state('group.shabbat_timers_in_effect_middle_floor', 'on') }}"
+  action:
+    - service: light.{{ iif(is_state('input_timetable.shabbat_middle_floor_hallway', 'on'), 'turn_on', 'turn_off') }}
+      entity_id: light.middle_floor_hallway_ceiling
+
+- id: shabbat_master_bedroom_bathroom
+  alias: shabbat_master_bedroom_bathroom
+  trigger:
+    - platform: state
+      entity_id: group.shabbat_timers_in_effect_master_bedroom, input_timetable.shabbat_master_bedroom_bathroom
+  condition: "{{ is_state('group.shabbat_timers_in_effect_master_bedroom', 'on') }}"
+  action:
+    - service: light.{{ iif(is_state('input_timetable.shabbat_master_bedroom_bathroom', 'on'), 'turn_on', 'turn_off') }}
+      entity_id: light.master_bedroom_bathroom_lights
+
+- id: shabbat_walk_in_closet
+  alias: shabbat_walk_in_closet
+  trigger:
+    - platform: state
+      entity_id: group.shabbat_timers_in_effect_master_bedroom, input_timetable.shabbat_walk_in_closet
+  condition: "{{ is_state('group.shabbat_timers_in_effect_master_bedroom', 'on') }}"
+  action:
+    - service: light.{{ iif(is_state('input_timetable.shabbat_walk_in_closet', 'on'), 'turn_on', 'turn_off') }}
+      entity_id: light.walk_in_closet
+
+- id: shabbat_shaked_lights
+  alias: shabbat_shaked_lights
+  trigger:
+    - platform: state
+      entity_id: group.shabbat_timers_in_effect_shaked, input_timetable.shabbat_shaked_lights
+  condition: "{{ is_state('group.shabbat_timers_in_effect_shaked', 'on') }}"
+  action:
+    - service: light.{{ iif(is_state('input_timetable.shabbat_shaked_lights', 'on'), 'turn_on', 'turn_off') }}
+      entity_id: light.shaked_main_light
+
+- id: shabbat_shaked_windows
+  alias: shabbat_shaked_windows
+  trigger:
+    - platform: state
+      entity_id: group.shabbat_timers_in_effect_shaked, input_timetable.shabbat_shaked_windows
+  condition: "{{ is_state('group.shabbat_timers_in_effect_shaked', 'on') }}"
+  action:
+    - service: cover.{{ iif(is_state('input_timetable.shabbat_shaked_windows', 'on'), 'open_cover', 'close_cover') }}
+      entity_id: cover.shaked_north_window, cover.shaked_south_window
+
