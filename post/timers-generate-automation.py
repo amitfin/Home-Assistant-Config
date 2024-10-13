@@ -83,10 +83,10 @@ class GenerateRules():
     self._write('  actions:')
     if 'condition' in config:
       self._write('    - condition: template')
-      self._write('      teamplate_value: "{{ is_state(\'%s\', \'on\') }}"' % config['condition'])
+      self._write('      value_template: "{{ is_state(\'%s\', \'on\') }}"' % config['condition'])
     self._write('    - if:')
     self._write('        - condition: template')
-    self._write('          teamplate_value: "{{ %s }}"' % (
+    self._write('          value_template: "{{ %s }}"' % (
       ' and '.join(map(lambda state: "is_state('%s', 'on')" % state, config['control']))))
     for state in ['on', 'off']:
       self._write('      %s:' % ('then' if state == 'on' else 'else'))
