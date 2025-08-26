@@ -13,6 +13,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -58,6 +63,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -129,6 +139,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -172,6 +187,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -219,6 +239,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -264,6 +289,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -315,6 +345,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -374,6 +409,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -435,6 +475,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -476,6 +521,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -525,6 +575,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -566,6 +621,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -607,6 +667,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -652,6 +717,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -695,6 +765,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -736,6 +811,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -777,6 +857,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -818,6 +903,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -860,6 +950,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -907,6 +1002,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -952,6 +1052,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -996,6 +1101,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -1037,6 +1147,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -1078,6 +1193,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -1120,6 +1240,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -1165,6 +1290,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -1210,6 +1340,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -1255,6 +1390,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -1300,6 +1440,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -1344,6 +1489,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -1386,6 +1536,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -1437,6 +1592,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -1484,6 +1644,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -1531,6 +1696,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -1576,6 +1746,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -1621,6 +1796,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -1667,6 +1847,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -1709,6 +1894,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -1753,6 +1943,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -1794,6 +1989,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -1835,6 +2035,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -1984,6 +2189,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - binary_sensor.not_shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -2028,6 +2238,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -2072,6 +2287,11 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - binary_sensor.jewish_calendar_issur_melacha_in_effect
+      state: "on"
   actions:
     - condition: state
       entity_id:
@@ -2117,6 +2337,12 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  conditions:
+    - condition: state
+      entity_id:
+        - binary_sensor.jewish_calendar_erev_shabbat_hag
+        - binary_sensor.synagogue_erev_shabbat
+      state: "on"
   actions:
     - condition: state
       entity_id:
