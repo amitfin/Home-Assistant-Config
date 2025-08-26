@@ -15,6 +15,15 @@
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
+  {% if automation.condition %}
+  conditions:
+    - condition: state
+      entity_id:
+        {% for condition in automation.condition %}
+        - {{ condition }}
+        {% endfor %}
+      state: "on"
+  {% endif %}
   actions:
     {% if automation.condition %}
     - condition: state
@@ -40,7 +49,7 @@
                     {% for entity in automation.entities %}
                     - {{ entity }}
                     {% endfor %}
-                {% if 'expected_on' in action[automation.action] %}
+            {% if 'expected_on' in action[automation.action] %}
             expected_state: {{ action[automation.action]['expected_on'] }}
             {% endif %}
       else:
@@ -53,7 +62,7 @@
                     {% for entity in automation.entities %}
                     - {{ entity }}
                     {% endfor %}
-                {% if 'expected_off' in action[automation.action] %}
+            {% if 'expected_off' in action[automation.action] %}
             expected_state: {{ action[automation.action]['expected_off'] }}
             {% endif %}
 {% endfor %}
