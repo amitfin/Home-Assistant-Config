@@ -1,0 +1,2151 @@
+# GENERATED FILE - DO NOT EDIT MANUALLY
+
+- id: always_on
+  alias: Always On (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.always_on
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.always_on
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_on
+                target:
+                  entity_id:
+                    - light.front_door_internal_lights
+                    - light.master_bedroom_toilet_light
+                    - light.guest_bathroom_light
+            expected_state: "on"
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_off
+                target:
+                  entity_id:
+                    - light.front_door_internal_lights
+                    - light.master_bedroom_toilet_light
+                    - light.guest_bathroom_light
+            expected_state: "off"
+
+- id: always_off_light
+  alias: Always Off Light (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.always_off
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.always_off
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_on
+                target:
+                  entity_id:
+                    - light.roei_main_lights
+                    - light.roei_peripheral_lights
+                    - light.reut_room_peripheral_lights
+                    - light.shaked_peripheral_lights
+                    - light.maayan_room_peripheral_lights
+                    - light.master_bedroom_light
+                    - light.attic_lights
+                    - light.attic_stairs_lights
+                    - light.coat_room_light
+                    - light.den_lights
+                    - light.den_desk_light
+                    - light.middle_floor_hallway_up_down
+                    - light.service_room_light
+                    - light.upper_floor_hallway_lights
+                    - light.upper_stairs_guiding_lights
+                    - light.upper_stairs_up_down_lights
+            expected_state: "on"
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_off
+                target:
+                  entity_id:
+                    - light.roei_main_lights
+                    - light.roei_peripheral_lights
+                    - light.reut_room_peripheral_lights
+                    - light.shaked_peripheral_lights
+                    - light.maayan_room_peripheral_lights
+                    - light.master_bedroom_light
+                    - light.attic_lights
+                    - light.attic_stairs_lights
+                    - light.coat_room_light
+                    - light.den_lights
+                    - light.den_desk_light
+                    - light.middle_floor_hallway_up_down
+                    - light.service_room_light
+                    - light.upper_floor_hallway_lights
+                    - light.upper_stairs_guiding_lights
+                    - light.upper_stairs_up_down_lights
+            expected_state: "off"
+
+- id: always_off_switch
+  alias: Always Off Switch (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.always_off
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.always_off
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: switch.turn_on
+                target:
+                  entity_id:
+                    - switch.master_bathroom_toilet_outlet
+                    - switch.gas_water_heater
+            expected_state: "on"
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: switch.turn_off
+                target:
+                  entity_id:
+                    - switch.master_bathroom_toilet_outlet
+                    - switch.gas_water_heater
+            expected_state: "off"
+
+- id: always_off_cover
+  alias: Always Off Cover (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.always_off
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.always_off
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: cover.open_cover
+                target:
+                  entity_id:
+                    - cover.roei_door
+                    - cover.shaked_door
+                    - cover.tv_room_door
+                    - cover.tv_room_window
+            expected_state: ['opening', 'open']
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: cover.close_cover
+                target:
+                  entity_id:
+                    - cover.roei_door
+                    - cover.shaked_door
+                    - cover.tv_room_door
+                    - cover.tv_room_window
+            expected_state: ['closing', 'closed']
+
+- id: always_off_climate
+  alias: Always Off Climate (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.always_off
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.always_off
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: climate.turn_on
+                target:
+                  entity_id:
+                    - climate.den_ac
+                    - climate.service_room_ac
+                    - climate.tv_room
+            expected_state: ['cool', 'heat']
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: climate.turn_off
+                target:
+                  entity_id:
+                    - climate.den_ac
+                    - climate.service_room_ac
+                    - climate.tv_room
+            expected_state: "off"
+
+- id: shabbat_main_floor_lights
+  alias: Shabbat Main Floor Lights (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.shabbat_main_floor_lights
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.shabbat_main_floor_lights
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_on
+                target:
+                  entity_id:
+                    - light.kitchen_main_light
+                    - light.kitchen_counter_lights
+                    - light.kitchen_spot_lights
+                    - light.living_room_main_lights
+                    - light.dining_room_main_light
+                    - light.family_room_main_light
+            expected_state: "on"
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_off
+                target:
+                  entity_id:
+                    - light.kitchen_main_light
+                    - light.kitchen_counter_lights
+                    - light.kitchen_spot_lights
+                    - light.living_room_main_lights
+                    - light.dining_room_main_light
+                    - light.family_room_main_light
+            expected_state: "off"
+
+- id: shabbat_main_floor_other_lights
+  alias: Shabbat Main Floor Other Lights (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.shabbat_main_floor_other_lights
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.shabbat_main_floor_other_lights
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_on
+                target:
+                  entity_id:
+                    - light.family_room_peripheral_lights
+                    - light.family_room_up_down_lights
+                    - light.dining_room_upper_light
+                    - light.living_room_curtains_lights
+                    - light.living_room_peripheral_lights
+                    - light.living_room_up_down_lights
+                    - light.south_curtain_lights
+                    - light.guest_sink_light
+                    - light.lower_stairs_guiding_lights
+                    - light.lower_stairs_up_down_lights
+            expected_state: "on"
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_off
+                target:
+                  entity_id:
+                    - light.family_room_peripheral_lights
+                    - light.family_room_up_down_lights
+                    - light.dining_room_upper_light
+                    - light.living_room_curtains_lights
+                    - light.living_room_peripheral_lights
+                    - light.living_room_up_down_lights
+                    - light.south_curtain_lights
+                    - light.guest_sink_light
+                    - light.lower_stairs_guiding_lights
+                    - light.lower_stairs_up_down_lights
+            expected_state: "off"
+
+- id: shabbat_front_yard_entrance_lights
+  alias: Shabbat Front Yard Entrance Lights (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.shabbat_front_yard_entrance_lights
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.shabbat_front_yard_entrance_lights
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_on
+                target:
+                  entity_id:
+                    - light.front_yard_lights
+                    - light.surrounding_up_down_lights
+                    - light.entrance_light
+                    - light.external_stairs
+                    - light.front_fence
+                    - light.front_garden
+                    - light.tree_lights
+                    - light.external_up_down_lights
+                    - light.front_yard_up_down_light
+                    - light.roei_external_lights
+                    - light.shaked_external_lights
+            expected_state: "on"
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_off
+                target:
+                  entity_id:
+                    - light.front_yard_lights
+                    - light.surrounding_up_down_lights
+                    - light.entrance_light
+                    - light.external_stairs
+                    - light.front_fence
+                    - light.front_garden
+                    - light.tree_lights
+                    - light.external_up_down_lights
+                    - light.front_yard_up_down_light
+                    - light.roei_external_lights
+                    - light.shaked_external_lights
+            expected_state: "off"
+
+- id: shabbat_hot_plate
+  alias: Shabbat Hot Plate (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.shabbat_hot_plate
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.shabbat_hot_plate
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: switch.turn_on
+                target:
+                  entity_id:
+                    - switch.hot_plate
+            expected_state: "on"
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: switch.turn_off
+                target:
+                  entity_id:
+                    - switch.hot_plate
+            expected_state: "off"
+
+- id: shabbat_main_floor_blinds
+  alias: Shabbat Main Floor Blinds (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.shabbat_main_floor_blinds
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.shabbat_main_floor_blinds
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: cover.open_cover
+                target:
+                  entity_id:
+                    - cover.kitchen_window
+                    - cover.living_room_door
+                    - cover.living_room_north
+                    - cover.living_room_west
+                    - cover.living_room_window
+            expected_state: ['opening', 'open']
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: cover.close_cover
+                target:
+                  entity_id:
+                    - cover.kitchen_window
+                    - cover.living_room_door
+                    - cover.living_room_north
+                    - cover.living_room_west
+                    - cover.living_room_window
+            expected_state: ['closing', 'closed']
+
+- id: shabbat_shelter_lights
+  alias: Shabbat Shelter Lights (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - input_boolean.shabbat_shelter_lights
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: input_boolean.shabbat_shelter_lights
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_on
+                target:
+                  entity_id:
+                    - light.shelter_lights
+            expected_state: "on"
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_off
+                target:
+                  entity_id:
+                    - light.shelter_lights
+            expected_state: "off"
+
+- id: shabbat_family_room_door
+  alias: Shabbat Family Room Door (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.shabbat_family_room_door
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.shabbat_family_room_door
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: cover.open_cover
+                target:
+                  entity_id:
+                    - cover.family_room_door
+            expected_state: ['opening', 'open']
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: cover.close_cover
+                target:
+                  entity_id:
+                    - cover.family_room_door
+            expected_state: ['closing', 'closed']
+
+- id: shabbat_pergola_lights_light
+  alias: Shabbat Pergola Lights Light (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.shabbat_pergola_lights
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.shabbat_pergola_lights
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_on
+                target:
+                  entity_id:
+                    - light.pergola_lights
+                    - light.backyard_fence_lights
+                    - light.backyard_garden_lights
+            expected_state: "on"
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_off
+                target:
+                  entity_id:
+                    - light.pergola_lights
+                    - light.backyard_fence_lights
+                    - light.backyard_garden_lights
+            expected_state: "off"
+
+- id: shabbat_pergola_lights_switch
+  alias: Shabbat Pergola Lights Switch (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.shabbat_pergola_lights
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.shabbat_pergola_lights
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: switch.turn_on
+                target:
+                  entity_id:
+                    - switch.pergola_kitchen_fan
+                    - switch.pergola_seating_fans
+            expected_state: "on"
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: switch.turn_off
+                target:
+                  entity_id:
+                    - switch.pergola_kitchen_fan
+                    - switch.pergola_seating_fans
+            expected_state: "off"
+
+- id: shabbat_dishwasher
+  alias: Shabbat Dishwasher (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.shabbat_dishwasher
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.shabbat_dishwasher
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: switch.turn_on
+                target:
+                  entity_id:
+                    - switch.meat_dishwasher
+            expected_state: "on"
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: switch.turn_off
+                target:
+                  entity_id:
+                    - switch.meat_dishwasher
+            expected_state: "off"
+
+- id: shabbat_living_room_ac
+  alias: Shabbat Living Room Ac (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.shabbat_living_room_ac
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.shabbat_living_room_ac
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: climate.turn_on
+                target:
+                  entity_id:
+                    - climate.living_room_ac
+            expected_state: ['cool', 'heat']
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: climate.turn_off
+                target:
+                  entity_id:
+                    - climate.living_room_ac
+            expected_state: "off"
+
+- id: shabbat_kitchen_ac
+  alias: Shabbat Kitchen Ac (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.shabbat_kitchen_ac
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.shabbat_kitchen_ac
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: climate.turn_on
+                target:
+                  entity_id:
+                    - climate.kitchen_ac
+            expected_state: ['cool', 'heat']
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: climate.turn_off
+                target:
+                  entity_id:
+                    - climate.kitchen_ac
+            expected_state: "off"
+
+- id: shabbat_family_room_ac
+  alias: Shabbat Family Room Ac (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.shabbat_family_room_ac
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.shabbat_family_room_ac
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: climate.turn_on
+                target:
+                  entity_id:
+                    - climate.family_room_ac
+            expected_state: ['cool', 'heat']
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: climate.turn_off
+                target:
+                  entity_id:
+                    - climate.family_room_ac
+            expected_state: "off"
+
+- id: shabbat_guest_room_lights
+  alias: Shabbat Guest Room Lights (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.shabbat_guest_room_lights
+        - input_boolean.shabbat_timers_guest_room
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.shabbat_guest_room_lights
+          state: "on"
+        - condition: state
+          entity_id: input_boolean.shabbat_timers_guest_room
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_on
+                target:
+                  entity_id:
+                    - light.guest_room_main_light
+                    - light.guest_room_peripheral_lights
+            expected_state: "on"
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_off
+                target:
+                  entity_id:
+                    - light.guest_room_main_light
+                    - light.guest_room_peripheral_lights
+            expected_state: "off"
+
+- id: shabbat_guest_bathroom_lights
+  alias: Shabbat Guest Bathroom Lights (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.shabbat_guest_bathroom_lights
+        - input_boolean.shabbat_timers_guest_room
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.shabbat_guest_bathroom_lights
+          state: "on"
+        - condition: state
+          entity_id: input_boolean.shabbat_timers_guest_room
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_on
+                target:
+                  entity_id:
+                    - light.guest_room_bathroom_lights
+            expected_state: "on"
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_off
+                target:
+                  entity_id:
+                    - light.guest_room_bathroom_lights
+            expected_state: "off"
+
+- id: shabbat_guest_room_ac
+  alias: Shabbat Guest Room Ac (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.shabbat_guest_room_ac
+        - input_boolean.shabbat_timers_guest_room
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.shabbat_guest_room_ac
+          state: "on"
+        - condition: state
+          entity_id: input_boolean.shabbat_timers_guest_room
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: climate.turn_on
+                target:
+                  entity_id:
+                    - climate.guest_room_ac
+            expected_state: ['cool', 'heat']
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: climate.turn_off
+                target:
+                  entity_id:
+                    - climate.guest_room_ac
+            expected_state: "off"
+
+- id: shabbat_front_yard_main_light
+  alias: Shabbat Front Yard Main Light (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.shabbat_front_yard_main_light
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.shabbat_front_yard_main_light
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_on
+                target:
+                  entity_id:
+                    - light.front_yard_main_light
+            expected_state: "on"
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_off
+                target:
+                  entity_id:
+                    - light.front_yard_main_light
+            expected_state: "off"
+
+- id: shabbat_front_yard_outlet_north
+  alias: Shabbat Front Yard Outlet North (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.shabbat_front_yard_outlet_north
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.shabbat_front_yard_outlet_north
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: switch.turn_on
+                target:
+                  entity_id:
+                    - switch.front_yard_outlet_n
+            expected_state: "on"
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: switch.turn_off
+                target:
+                  entity_id:
+                    - switch.front_yard_outlet_n
+            expected_state: "off"
+
+- id: shabbat_front_yard_outlet_south
+  alias: Shabbat Front Yard Outlet South (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.shabbat_front_yard_outlet_south
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.shabbat_front_yard_outlet_south
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: switch.turn_on
+                target:
+                  entity_id:
+                    - switch.front_yard_outlet_s
+            expected_state: "on"
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: switch.turn_off
+                target:
+                  entity_id:
+                    - switch.front_yard_outlet_s
+            expected_state: "off"
+
+- id: shabbat_master_bedroom_ac
+  alias: Shabbat Master Bedroom Ac (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.shabbat_master_bedroom_ac
+        - input_boolean.shabbat_timers_master_bedroom
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.shabbat_master_bedroom_ac
+          state: "on"
+        - condition: state
+          entity_id: input_boolean.shabbat_timers_master_bedroom
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: climate.turn_on
+                target:
+                  entity_id:
+                    - climate.master_bedroom_ac
+            expected_state: ['cool', 'heat']
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: climate.turn_off
+                target:
+                  entity_id:
+                    - climate.master_bedroom_ac
+            expected_state: "off"
+
+- id: shabbat_reut_ac
+  alias: Shabbat Reut Ac (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.shabbat_reut_ac
+        - input_boolean.shabbat_timers_reut
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.shabbat_reut_ac
+          state: "on"
+        - condition: state
+          entity_id: input_boolean.shabbat_timers_reut
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: climate.turn_on
+                target:
+                  entity_id:
+                    - climate.reut_ac
+            expected_state: ['cool', 'heat']
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: climate.turn_off
+                target:
+                  entity_id:
+                    - climate.reut_ac
+            expected_state: "off"
+
+- id: shabbat_shaked_ac
+  alias: Shabbat Shaked Ac (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.shabbat_shaked_ac
+        - input_boolean.shabbat_timers_shaked
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.shabbat_shaked_ac
+          state: "on"
+        - condition: state
+          entity_id: input_boolean.shabbat_timers_shaked
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: climate.turn_on
+                target:
+                  entity_id:
+                    - climate.shaked_ac
+            expected_state: ['cool', 'heat']
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: climate.turn_off
+                target:
+                  entity_id:
+                    - climate.shaked_ac
+            expected_state: "off"
+
+- id: shabbat_roei_ac
+  alias: Shabbat Roei Ac (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.shabbat_roei_ac
+        - input_boolean.shabbat_timers_roei
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.shabbat_roei_ac
+          state: "on"
+        - condition: state
+          entity_id: input_boolean.shabbat_timers_roei
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: climate.turn_on
+                target:
+                  entity_id:
+                    - climate.roei_ac
+            expected_state: ['cool', 'heat']
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: climate.turn_off
+                target:
+                  entity_id:
+                    - climate.roei_ac
+            expected_state: "off"
+
+- id: shabbat_maayan_ac
+  alias: Shabbat Maayan Ac (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.shabbat_maayan_ac
+        - input_boolean.shabbat_timers_maayan
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.shabbat_maayan_ac
+          state: "on"
+        - condition: state
+          entity_id: input_boolean.shabbat_timers_maayan
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: climate.turn_on
+                target:
+                  entity_id:
+                    - climate.maayan_ac
+            expected_state: ['cool', 'heat']
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: climate.turn_off
+                target:
+                  entity_id:
+                    - climate.maayan_ac
+            expected_state: "off"
+
+- id: shabbat_middle_floor_hallway
+  alias: Shabbat Middle Floor Hallway (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.shabbat_middle_floor_hallway
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.shabbat_middle_floor_hallway
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_on
+                target:
+                  entity_id:
+                    - light.middle_floor_hallway_lights
+            expected_state: "on"
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_off
+                target:
+                  entity_id:
+                    - light.middle_floor_hallway_lights
+            expected_state: "off"
+
+- id: shabbat_master_bedroom_light
+  alias: Shabbat Master Bedroom Light (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.shabbat_master_bedroom_light
+        - input_boolean.shabbat_timers_master_bedroom
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.shabbat_master_bedroom_light
+          state: "on"
+        - condition: state
+          entity_id: input_boolean.shabbat_timers_master_bedroom
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_on
+                target:
+                  entity_id:
+                    - light.master_bedroom_spot_lights
+                    - light.master_bedroom_curtain_light
+                    - light.amit_night_light
+                    - light.shiri_night_light
+            expected_state: "on"
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_off
+                target:
+                  entity_id:
+                    - light.master_bedroom_spot_lights
+                    - light.master_bedroom_curtain_light
+                    - light.amit_night_light
+                    - light.shiri_night_light
+            expected_state: "off"
+
+- id: shabbat_master_bedroom_windows
+  alias: Shabbat Master Bedroom Windows (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.shabbat_master_bedroom_windows
+        - input_boolean.shabbat_timers_master_bedroom
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.shabbat_master_bedroom_windows
+          state: "on"
+        - condition: state
+          entity_id: input_boolean.shabbat_timers_master_bedroom
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: cover.open_cover
+                target:
+                  entity_id:
+                    - cover.master_bedroom_north_window
+                    - cover.master_bedroom_west_window
+            expected_state: ['opening', 'open']
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: cover.close_cover
+                target:
+                  entity_id:
+                    - cover.master_bedroom_north_window
+                    - cover.master_bedroom_west_window
+            expected_state: ['closing', 'closed']
+
+- id: shabbat_master_bedroom_bathroom
+  alias: Shabbat Master Bedroom Bathroom (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.shabbat_master_bedroom_bathroom
+        - input_boolean.shabbat_timers_master_bedroom
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.shabbat_master_bedroom_bathroom
+          state: "on"
+        - condition: state
+          entity_id: input_boolean.shabbat_timers_master_bedroom
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_on
+                target:
+                  entity_id:
+                    - light.master_bedroom_bathroom_lights
+                    - light.master_bathroom_mirror_lights
+            expected_state: "on"
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_off
+                target:
+                  entity_id:
+                    - light.master_bedroom_bathroom_lights
+                    - light.master_bathroom_mirror_lights
+            expected_state: "off"
+
+- id: shabbat_walk_in_clothet_lights
+  alias: Shabbat Walk In Clothet Lights (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - input_boolean.shabbat_walk_in_clothet_lights
+        - input_boolean.shabbat_timers_master_bedroom
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: input_boolean.shabbat_walk_in_clothet_lights
+          state: "on"
+        - condition: state
+          entity_id: input_boolean.shabbat_timers_master_bedroom
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_on
+                target:
+                  entity_id:
+                    - light.walk_in_closet
+            expected_state: "on"
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_off
+                target:
+                  entity_id:
+                    - light.walk_in_closet
+            expected_state: "off"
+
+- id: shabbat_shaked_lights
+  alias: Shabbat Shaked Lights (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.shabbat_shaked_lights
+        - input_boolean.shabbat_timers_shaked
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.shabbat_shaked_lights
+          state: "on"
+        - condition: state
+          entity_id: input_boolean.shabbat_timers_shaked
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_on
+                target:
+                  entity_id:
+                    - light.shaked_main_light
+            expected_state: "on"
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_off
+                target:
+                  entity_id:
+                    - light.shaked_main_light
+            expected_state: "off"
+
+- id: shabbat_shaked_windows
+  alias: Shabbat Shaked Windows (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.shabbat_shaked_windows
+        - input_boolean.shabbat_timers_shaked
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.shabbat_shaked_windows
+          state: "on"
+        - condition: state
+          entity_id: input_boolean.shabbat_timers_shaked
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: cover.open_cover
+                target:
+                  entity_id:
+                    - cover.shaked_north_window
+                    - cover.shaked_south_window
+            expected_state: ['opening', 'open']
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: cover.close_cover
+                target:
+                  entity_id:
+                    - cover.shaked_north_window
+                    - cover.shaked_south_window
+            expected_state: ['closing', 'closed']
+
+- id: shabbat_timers_shaked
+  alias: Shabbat Timers Shaked (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - input_boolean.shabbat_timers_shaked
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: input_boolean.shabbat_timers_shaked
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_on
+                target:
+                  entity_id:
+                    - light.shaked_bathroom_lights
+            expected_state: "on"
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_off
+                target:
+                  entity_id:
+                    - light.shaked_bathroom_lights
+            expected_state: "off"
+
+- id: shabbat_maayan_lights
+  alias: Shabbat Maayan Lights (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.shabbat_maayan_lights
+        - input_boolean.shabbat_timers_maayan
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.shabbat_maayan_lights
+          state: "on"
+        - condition: state
+          entity_id: input_boolean.shabbat_timers_maayan
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_on
+                target:
+                  entity_id:
+                    - light.maayan_room_main_lights
+            expected_state: "on"
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_off
+                target:
+                  entity_id:
+                    - light.maayan_room_main_lights
+            expected_state: "off"
+
+- id: shabbat_timers_maayan
+  alias: Shabbat Timers Maayan (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - input_boolean.shabbat_timers_maayan
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: input_boolean.shabbat_timers_maayan
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_on
+                target:
+                  entity_id:
+                    - light.maayan_bathroom_lights
+            expected_state: "on"
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_off
+                target:
+                  entity_id:
+                    - light.maayan_bathroom_lights
+            expected_state: "off"
+
+- id: shabbat_timers_reut
+  alias: Shabbat Timers Reut (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - input_boolean.shabbat_timers_reut
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: input_boolean.shabbat_timers_reut
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_on
+                target:
+                  entity_id:
+                    - light.reut_bathroom_lights
+            expected_state: "on"
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_off
+                target:
+                  entity_id:
+                    - light.reut_bathroom_lights
+            expected_state: "off"
+
+- id: shabbat_timers_roei
+  alias: Shabbat Timers Roei (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - input_boolean.shabbat_timers_roei
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: input_boolean.shabbat_timers_roei
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_on
+                target:
+                  entity_id:
+                    - light.roei_bathroom_lights
+            expected_state: "on"
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_off
+                target:
+                  entity_id:
+                    - light.roei_bathroom_lights
+            expected_state: "off"
+
+- id: coatroom_venta_schedule
+  alias: Coatroom Venta Schedule (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.coatroom_venta_schedule
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - if:
+        - condition: state
+          entity_id: binary_sensor.coatroom_venta_schedule
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: switch.turn_on
+                target:
+                  entity_id:
+                    - switch.coatroom_venta
+            expected_state: "on"
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: switch.turn_off
+                target:
+                  entity_id:
+                    - switch.coatroom_venta
+            expected_state: "off"
+
+- id: watering_system
+  alias: Watering System (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.watering_system
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - if:
+        - condition: state
+          entity_id: binary_sensor.watering_system
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: switch.turn_on
+                target:
+                  entity_id:
+                    - switch.irrigation
+            expected_state: "on"
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: switch.turn_off
+                target:
+                  entity_id:
+                    - switch.irrigation
+            expected_state: "off"
+
+- id: upper_floor_buffet_light_schedule
+  alias: Upper Floor Buffet Light Schedule (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.upper_floor_buffet_light_schedule
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - if:
+        - condition: state
+          entity_id: binary_sensor.upper_floor_buffet_light_schedule
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_on
+                target:
+                  entity_id:
+                    - light.upper_floor_buffet
+            expected_state: "on"
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_off
+                target:
+                  entity_id:
+                    - light.upper_floor_buffet
+            expected_state: "off"
+
+- id: front_yard_entrance_lights
+  alias: Front Yard Entrance Lights (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.front_yard_entrance_lights
+        - binary_sensor.not_shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - binary_sensor.not_shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.front_yard_entrance_lights
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_on
+                target:
+                  entity_id:
+                    - light.front_yard_lights
+                    - light.surrounding_up_down_lights
+            expected_state: "on"
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_off
+                target:
+                  entity_id:
+                    - light.front_yard_lights
+                    - light.surrounding_up_down_lights
+            expected_state: "off"
+
+- id: shabbat_reut_main_light
+  alias: Shabbat Reut Main Light (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - input_boolean.shabbat_reut_main_light
+        - input_boolean.shabbat_timers_reut
+        - group.shabbat_timers_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - group.shabbat_timers_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: input_boolean.shabbat_reut_main_light
+          state: "on"
+        - condition: state
+          entity_id: input_boolean.shabbat_timers_reut
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_on
+                target:
+                  entity_id:
+                    - light.reut_room_main_lights
+            expected_state: "on"
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: light.turn_off
+                target:
+                  entity_id:
+                    - light.reut_room_main_lights
+            expected_state: "off"
+
+- id: synagogue_shabbat
+  alias: Synagogue Shabbat (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.synagogue_shabbat
+        - binary_sensor.jewish_calendar_issur_melacha_in_effect
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - binary_sensor.jewish_calendar_issur_melacha_in_effect
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.synagogue_shabbat
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: script.sensibo_cool_full_state
+                target:
+                  entity_id:
+                    - climate.drvm_ymyn_m_rb
+                    - climate.drvm_shml_mzrkh
+                    - climate.m_rb_ymyn_tspvn_knysh
+                    - climate.mzgn_tspvn
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: climate.turn_off
+                target:
+                  entity_id:
+                    - climate.drvm_ymyn_m_rb
+                    - climate.drvm_shml_mzrkh
+                    - climate.m_rb_ymyn_tspvn_knysh
+                    - climate.mzgn_tspvn
+
+- id: synagogue_erev_shabbat
+  alias: Synagogue Erev Shabbat (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        - binary_sensor.synagogue_erev_shabbat
+        - binary_sensor.jewish_calendar_erev_shabbat_hag
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    - condition: state
+      entity_id:
+        - binary_sensor.jewish_calendar_erev_shabbat_hag
+        - binary_sensor.synagogue_erev_shabbat
+      state: "on"
+    - if:
+        - condition: state
+          entity_id: binary_sensor.synagogue_erev_shabbat
+          state: "on"
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: script.sensibo_cool_full_state
+                target:
+                  entity_id:
+                    - climate.drvm_ymyn_m_rb
+                    - climate.drvm_shml_mzrkh
+                    - climate.m_rb_ymyn_tspvn_knysh
+                    - climate.mzgn_tspvn
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: climate.turn_off
+                target:
+                  entity_id:
+                    - climate.drvm_ymyn_m_rb
+                    - climate.drvm_shml_mzrkh
+                    - climate.m_rb_ymyn_tspvn_knysh
+                    - climate.mzgn_tspvn

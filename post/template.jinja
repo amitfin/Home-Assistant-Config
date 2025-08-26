@@ -1,0 +1,59 @@
+# GENERATED FILE - DO NOT EDIT MANUALLY
+{% for automation in automations %}
+
+- id: {{ automation.id }}
+  alias: {{ automation.id | replace('_', ' ') | title }} (Generated)
+  mode: restart
+  trace:
+    stored_traces: 0
+  triggers:
+    - trigger: state
+      entity_id:
+        {% for trigger in (automation.control + (automation.condition or [])) | unique %}
+        - {{ trigger }}
+        {% endfor %}
+      to: ["on", "off"]
+    - trigger: time_pattern
+      minutes: "/15"
+  actions:
+    {% if automation.condition %}
+    - condition: state
+      entity_id:
+        {% for condition in automation.condition %}
+        - {{ condition }}
+        {% endfor %}
+      state: "on"
+    {% endif %}
+    - if:
+        {% for control in automation.control %}
+        - condition: state
+          entity_id: {{ control }}
+          state: "on"
+        {% endfor %}
+      then:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: {{ action[automation.action]['on'] }}
+                target:
+                  entity_id:
+                    {% for entity in automation.entities %}
+                    - {{ entity }}
+                    {% endfor %}
+                {% if 'expected_on' in action[automation.action] %}
+            expected_state: {{ action[automation.action]['expected_on'] }}
+            {% endif %}
+      else:
+        - action: retry.actions
+          data:
+            sequence:
+              - action: {{ action[automation.action]['off'] }}
+                target:
+                  entity_id:
+                    {% for entity in automation.entities %}
+                    - {{ entity }}
+                    {% endfor %}
+                {% if 'expected_off' in action[automation.action] %}
+            expected_state: {{ action[automation.action]['expected_off'] }}
+            {% endif %}
+{% endfor %}
