@@ -9,19 +9,19 @@
     - trigger: state
       entity_id:
         - binary_sensor.always_on
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -59,19 +59,19 @@
     - trigger: state
       entity_id:
         - binary_sensor.always_off
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -135,19 +135,19 @@
     - trigger: state
       entity_id:
         - binary_sensor.always_off
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -183,19 +183,19 @@
     - trigger: state
       entity_id:
         - binary_sensor.always_off
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -235,19 +235,19 @@
     - trigger: state
       entity_id:
         - binary_sensor.always_off
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -285,19 +285,19 @@
     - trigger: state
       entity_id:
         - binary_sensor.shabbat_main_floor_lights
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -341,19 +341,19 @@
     - trigger: state
       entity_id:
         - binary_sensor.shabbat_main_floor_other_lights
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -405,19 +405,19 @@
     - trigger: state
       entity_id:
         - binary_sensor.shabbat_front_yard_entrance_lights
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -471,19 +471,19 @@
     - trigger: state
       entity_id:
         - binary_sensor.shabbat_hot_plate
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -517,19 +517,19 @@
     - trigger: state
       entity_id:
         - binary_sensor.shabbat_main_floor_blinds
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -571,19 +571,19 @@
     - trigger: state
       entity_id:
         - input_boolean.shabbat_shelter_lights
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -617,19 +617,19 @@
     - trigger: state
       entity_id:
         - binary_sensor.shabbat_family_room_door
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -663,19 +663,19 @@
     - trigger: state
       entity_id:
         - binary_sensor.shabbat_pergola_lights
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -713,19 +713,19 @@
     - trigger: state
       entity_id:
         - binary_sensor.shabbat_pergola_lights
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -761,19 +761,19 @@
     - trigger: state
       entity_id:
         - binary_sensor.shabbat_dishwasher
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -807,19 +807,19 @@
     - trigger: state
       entity_id:
         - binary_sensor.shabbat_living_room_ac
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -853,19 +853,19 @@
     - trigger: state
       entity_id:
         - binary_sensor.shabbat_kitchen_ac
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -899,19 +899,19 @@
     - trigger: state
       entity_id:
         - binary_sensor.shabbat_family_room_ac
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -946,19 +946,19 @@
       entity_id:
         - binary_sensor.shabbat_guest_room_lights
         - input_boolean.shabbat_timers_guest_room
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -998,19 +998,19 @@
       entity_id:
         - binary_sensor.shabbat_guest_bathroom_lights
         - input_boolean.shabbat_timers_guest_room
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -1048,19 +1048,19 @@
       entity_id:
         - binary_sensor.shabbat_guest_room_ac
         - input_boolean.shabbat_timers_guest_room
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -1097,19 +1097,19 @@
     - trigger: state
       entity_id:
         - binary_sensor.shabbat_front_yard_main_light
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -1143,19 +1143,19 @@
     - trigger: state
       entity_id:
         - binary_sensor.shabbat_front_yard_outlet_north
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -1189,19 +1189,19 @@
     - trigger: state
       entity_id:
         - binary_sensor.shabbat_front_yard_outlet_south
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -1236,19 +1236,19 @@
       entity_id:
         - binary_sensor.shabbat_master_bedroom_ac
         - input_boolean.shabbat_timers_master_bedroom
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -1286,19 +1286,19 @@
       entity_id:
         - binary_sensor.shabbat_reut_ac
         - input_boolean.shabbat_timers_reut
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -1336,19 +1336,19 @@
       entity_id:
         - binary_sensor.shabbat_shaked_ac
         - input_boolean.shabbat_timers_shaked
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -1386,19 +1386,19 @@
       entity_id:
         - binary_sensor.shabbat_roei_ac
         - input_boolean.shabbat_timers_roei
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -1436,19 +1436,19 @@
       entity_id:
         - binary_sensor.shabbat_maayan_ac
         - input_boolean.shabbat_timers_maayan
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -1485,19 +1485,19 @@
     - trigger: state
       entity_id:
         - binary_sensor.shabbat_middle_floor_hallway
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -1532,19 +1532,19 @@
       entity_id:
         - binary_sensor.shabbat_master_bedroom_light
         - input_boolean.shabbat_timers_master_bedroom
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -1588,19 +1588,19 @@
       entity_id:
         - binary_sensor.shabbat_master_bedroom_windows
         - input_boolean.shabbat_timers_master_bedroom
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -1640,19 +1640,19 @@
       entity_id:
         - binary_sensor.shabbat_master_bedroom_bathroom
         - input_boolean.shabbat_timers_master_bedroom
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -1692,19 +1692,19 @@
       entity_id:
         - input_boolean.shabbat_walk_in_clothet_lights
         - input_boolean.shabbat_timers_master_bedroom
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -1742,19 +1742,19 @@
       entity_id:
         - binary_sensor.shabbat_shaked_lights
         - input_boolean.shabbat_timers_shaked
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -1792,19 +1792,19 @@
       entity_id:
         - binary_sensor.shabbat_shaked_windows
         - input_boolean.shabbat_timers_shaked
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -1843,19 +1843,19 @@
     - trigger: state
       entity_id:
         - input_boolean.shabbat_timers_shaked
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -1890,19 +1890,19 @@
       entity_id:
         - binary_sensor.shabbat_maayan_lights
         - input_boolean.shabbat_timers_maayan
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -1939,19 +1939,19 @@
     - trigger: state
       entity_id:
         - input_boolean.shabbat_timers_maayan
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -1985,19 +1985,19 @@
     - trigger: state
       entity_id:
         - input_boolean.shabbat_timers_reut
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -2031,19 +2031,19 @@
     - trigger: state
       entity_id:
         - input_boolean.shabbat_timers_roei
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -2234,19 +2234,19 @@
       entity_id:
         - input_boolean.shabbat_reut_main_light
         - input_boolean.shabbat_timers_reut
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - group.shabbat_timers_in_effect
+        - binary_sensor.shabbat_timers_in_effect
       state: "on"
     - if:
         - condition: state
@@ -2283,19 +2283,19 @@
     - trigger: state
       entity_id:
         - binary_sensor.synagogue_shabbat
-        - binary_sensor.jewish_calendar_issur_melacha_in_effect
+        - binary_sensor.issur_melacha_in_effect
       to: ["on", "off"]
     - trigger: time_pattern
       minutes: "/15"
   conditions:
     - condition: state
       entity_id:
-        - binary_sensor.jewish_calendar_issur_melacha_in_effect
+        - binary_sensor.issur_melacha_in_effect
       state: "on"
   actions:
     - condition: state
       entity_id:
-        - binary_sensor.jewish_calendar_issur_melacha_in_effect
+        - binary_sensor.issur_melacha_in_effect
       state: "on"
     - if:
         - condition: state
